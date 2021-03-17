@@ -1,7 +1,8 @@
-package cl.gersard.shoppingtracking
+package cl.gersard.shoppingtracking.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import cl.gersard.shoppingtracking.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

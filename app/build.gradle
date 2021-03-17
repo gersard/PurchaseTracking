@@ -27,6 +27,7 @@ android {
         }
     }
     compileOptions {
+        coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -78,7 +79,7 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
 
     // DEPENDENCY INJECTION
-    def hilt_lifecycle_version = "1.0.0-alpha02"
+    def hilt_lifecycle_version = "1.0.0-alpha03"
     implementation "com.google.dagger:hilt-android:$hilt_version"
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
