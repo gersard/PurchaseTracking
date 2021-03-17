@@ -1,4 +1,4 @@
-package cl.gersard.shoppingtracking.data.product
+package cl.gersard.shoppingtracking.data.product.local.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

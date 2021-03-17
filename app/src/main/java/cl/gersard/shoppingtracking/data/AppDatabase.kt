@@ -1,14 +1,14 @@
-package cl.gersard.shoppingtracking
+package cl.gersard.shoppingtracking.data
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import cl.gersard.shoppingtracking.core.converter.DateConverter
-import cl.gersard.shoppingtracking.data.BrandEntity
-import cl.gersard.shoppingtracking.data.MarketEntity
-import cl.gersard.shoppingtracking.data.product.ProductEntity
+import cl.gersard.shoppingtracking.data.brand.BrandEntity
+import cl.gersard.shoppingtracking.data.market.MarketEntity
+import cl.gersard.shoppingtracking.data.product.local.ProductDao
+import cl.gersard.shoppingtracking.data.product.local.model.ProductEntity
 import cl.gersard.shoppingtracking.data.purchase.PurchaseEntity
-import cl.gersard.shoppingtracking.domain.Product
 
 @Database(
     entities = [ProductEntity::class, PurchaseEntity::class, BrandEntity::class, MarketEntity::class],
@@ -17,6 +17,8 @@ import cl.gersard.shoppingtracking.domain.Product
 )
 @TypeConverters(DateConverter::class)
 abstract class AppDatabase : RoomDatabase() {
+
+    abstract fun productDao(): ProductDao
 
     companion object {
         const val DATABASE_NAME = "tracking_app"

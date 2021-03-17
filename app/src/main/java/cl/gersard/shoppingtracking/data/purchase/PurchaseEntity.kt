@@ -9,7 +9,7 @@ import java.time.LocalDateTime
 data class PurchaseEntity(
     @ColumnInfo(name = "id")
     @PrimaryKey(autoGenerate = true)
-    val id: Long,
+    val purchaseId: Long,
     @ColumnInfo(name = "total") val total: Int,
     @ColumnInfo(name = "quantity") val quantity: Int,
     @ColumnInfo(name = "date") val date: LocalDateTime,

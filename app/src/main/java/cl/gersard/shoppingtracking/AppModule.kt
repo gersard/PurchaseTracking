@@ -2,6 +2,7 @@ package cl.gersard.shoppingtracking
 
 import android.content.Context
 import androidx.room.Room
+import cl.gersard.shoppingtracking.data.AppDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
