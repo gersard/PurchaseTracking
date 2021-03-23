@@ -1,9 +1,8 @@
 package cl.gersard.shoppingtracking.di
 
-import cl.gersard.shoppingtracking.data.AppDatabase
+import cl.gersard.shoppingtracking.core.AppDatabase
 import cl.gersard.shoppingtracking.data.brand.BrandMapper
 import cl.gersard.shoppingtracking.data.product.ProductMapper
-import cl.gersard.shoppingtracking.data.purchase.PurchaseMapper
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

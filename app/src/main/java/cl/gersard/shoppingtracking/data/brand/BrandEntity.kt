@@ -11,6 +11,6 @@ data class BrandEntity(
     val brandId: Long,
     @ColumnInfo(name = "name")
     val name: String,
-    @ColumnInfo(name = "product_owner_id")
+    @ColumnInfo(name = "productOwnerId")
     val productOwnerId: Long
 )

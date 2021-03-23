@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "market")
+@Entity(tableName = "Market")
 data class MarketEntity(
     @ColumnInfo(name = "id")
     @PrimaryKey(autoGenerate = true)

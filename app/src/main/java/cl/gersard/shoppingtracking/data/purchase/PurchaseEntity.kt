@@ -7,7 +7,7 @@ import java.time.LocalDateTime
 
 @Entity(tableName = "Purchase")
 data class PurchaseEntity(
-    @ColumnInfo(name = "id")
+    @ColumnInfo(name = "purchaseId")
     @PrimaryKey(autoGenerate = true)
     val purchaseId: Long,
     @ColumnInfo(name = "total") val total: Int,
