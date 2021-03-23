@@ -42,7 +42,6 @@ android {
 
 dependencies {
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     // UI
@@ -82,7 +81,7 @@ dependencies {
     // DEPENDENCY INJECTION
     def hilt_lifecycle_version = "1.0.0-alpha03"
     implementation "com.google.dagger:hilt-android:$hilt_version"
-    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
     kapt "androidx.hilt:hilt-compiler:$hilt_lifecycle_version"
 
@@ -94,7 +93,11 @@ dependencies {
     def java8Features = '1.1.1'
     coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:$java8Features"
 
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    // TESTING
+    def junit = '4.13.2'
+    def extJunit = '1.1.2'
+    def espresso = '3.3.0'
+    testImplementation "junit:junit:$junit"
+    androidTestImplementation "androidx.test.ext:junit:$extJunit"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso"
 }
