@@ -9,6 +9,7 @@ import cl.gersard.shoppingtracking.data.market.MarketEntity
 import cl.gersard.shoppingtracking.data.product.local.ProductDao
 import cl.gersard.shoppingtracking.data.product.local.model.ProductEntity
 import cl.gersard.shoppingtracking.data.purchase.PurchaseEntity
+import cl.gersard.shoppingtracking.data.purchase.local.PurchaseDao
 
 @Database(
     entities = [ProductEntity::class, PurchaseEntity::class, BrandEntity::class, MarketEntity::class],
@@ -19,6 +20,7 @@ import cl.gersard.shoppingtracking.data.purchase.PurchaseEntity
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun productDao(): ProductDao
+    abstract fun purchaseDao(): PurchaseDao
 
     companion object {
         const val DATABASE_NAME = "tracking_app"

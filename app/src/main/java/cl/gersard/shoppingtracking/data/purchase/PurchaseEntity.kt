@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.time.LocalDateTime
 
-@Entity(tableName = "purchase")
+@Entity(tableName = "Purchase")
 data class PurchaseEntity(
     @ColumnInfo(name = "id")
     @PrimaryKey(autoGenerate = true)

@@ -1,4 +1,4 @@
-package cl.gersard.shoppingtracking
+package cl.gersard.shoppingtracking.di
 
 import android.content.Context
 import androidx.room.Room

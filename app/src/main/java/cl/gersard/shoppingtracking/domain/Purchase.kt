@@ -9,5 +9,6 @@ data class Purchase(
     val date: LocalDateTime,
     val market: Market,
     val discount: Boolean,
-    val note: String
+    val note: String,
+    val products: List<Product>
 )

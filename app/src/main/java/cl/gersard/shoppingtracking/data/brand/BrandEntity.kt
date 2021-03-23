@@ -10,5 +10,7 @@ data class BrandEntity(
     @PrimaryKey(autoGenerate = true)
     val brandId: Long,
     @ColumnInfo(name = "name")
-    val name: String
+    val name: String,
+    @ColumnInfo(name = "product_owner_id")
+    val productOwnerId: Long
 )

@@ -1,4 +1,4 @@
-package cl.gersard.shoppingtracking.data.product.di
+package cl.gersard.shoppingtracking.di
 
 import cl.gersard.shoppingtracking.data.AppDatabase
 import cl.gersard.shoppingtracking.data.brand.BrandMapper
@@ -17,6 +17,6 @@ object ProductModule {
     fun providesProductDao(db: AppDatabase) = db.productDao()
 
     @Provides
-    fun providesProductMapper(brandMapper: BrandMapper, purchaseMapper: PurchaseMapper) = ProductMapper(brandMapper, purchaseMapper)
+    fun providesProductMapper(brandMapper: BrandMapper) = ProductMapper(brandMapper)
 
 }
