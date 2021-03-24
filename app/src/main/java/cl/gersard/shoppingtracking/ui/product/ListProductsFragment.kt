@@ -6,24 +6,33 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import cl.gersard.shoppingtracking.R
+import cl.gersard.shoppingtracking.databinding.ListProductsFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ListProductsFragment : Fragment() {
 
-
-    private lateinit var viewModel: ListProductsViewModel
+    private var _viewBinding: ListProductsFragmentBinding? = null
+    private val viewBinding: ListProductsFragmentBinding get() = _viewBinding!!
+    private val viewModel: ListProductsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.list_products_fragment, container, false)
+    ): View {
+        _viewBinding = ListProductsFragmentBinding.inflate(inflater, container, false)
+        return viewBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _viewBinding = null
     }
 
     companion object {

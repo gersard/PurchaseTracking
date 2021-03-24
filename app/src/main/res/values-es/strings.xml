@@ -6,4 +6,6 @@
     <string name="content_description_search_button">Botón de buscar</string>
     <string name="empty_products_list">Nose encontraron productos. \nPresiona aquí para recargar</string>
     <string name="title_products">Productos</string>
+    <string name="content_description_menu_product">Product options menu</string>
+    <string name="last_purchase_price">Precio ult. compra:</string>
 </resources>

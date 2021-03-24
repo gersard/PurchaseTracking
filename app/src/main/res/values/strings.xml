@@ -6,4 +6,6 @@
     <string name="content_description_search_button">Search button</string>
     <string name="empty_products_list">No products founded. \nTap here to reload</string>
     <string name="title_products">Products</string>
+    <string name="content_description_menu_product">Product options menu</string>
+    <string name="last_purchase_price">Last purch. price:</string>
 </resources>
