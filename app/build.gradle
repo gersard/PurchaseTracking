@@ -42,7 +42,9 @@ android {
 
 dependencies {
 
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    // LEGACY SUPPORT
+    def legacySupport_version = '1.0.0'
+    implementation "androidx.legacy:legacy-support-v4:$legacySupport_version"
 
     // UI
     def appCompat_version = "1.2.0"
@@ -81,7 +83,7 @@ dependencies {
     // DEPENDENCY INJECTION
     def hilt_lifecycle_version = "1.0.0-alpha03"
     implementation "com.google.dagger:hilt-android:$hilt_version"
-    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_version"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_lifecycle_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
     kapt "androidx.hilt:hilt-compiler:$hilt_lifecycle_version"
 
