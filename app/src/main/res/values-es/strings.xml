@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-
+<!--    LISTA DE PRODUCTOS-->
+    <string name="content_description_fab_add_purchase">Añadir compra</string>
+    <string name="content_description_search_button">Botón de buscar</string>
+    <string name="empty_products_list">Nose encontraron productos. \nPresiona aquí para recargar</string>
+    <string name="title_products">Productos</string>
 </resources>

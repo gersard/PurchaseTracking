@@ -7,4 +7,6 @@
     <color name="text_color_secondary">#646A78</color>
     <color name="positive">#1B9B17</color>
     <color name="negative">#9B1717</color>
+
+    <color name="transparent">#00FFFFFF</color>
 </resources>

@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name" translatable="false">PurchaseTracking</string>
+
+    <!--    PRODUCT'S LIST-->
+    <string name="content_description_fab_add_purchase">Add purchase</string>
+    <string name="content_description_search_button">Search button</string>
+    <string name="empty_products_list">No products founded. \nTap here to reload</string>
+    <string name="title_products">Products</string>
 </resources>
