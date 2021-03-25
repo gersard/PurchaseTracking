@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import cl.gersard.shoppingtracking.R
 import cl.gersard.shoppingtracking.databinding.ListProductsFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,7 +37,7 @@ class ListProductsFragment : Fragment() {
     }
 
     private fun observeProducts() {
-        TODO("Not yet implemented")
+
     }
 
     private fun observeLoading() {
@@ -50,7 +51,8 @@ class ListProductsFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        TODO("Not yet implemented")
+        viewBinding.rvProducts.setHasFixedSize(true)
+        viewBinding.rvProducts.layoutManager = LinearLayoutManager(requireContext())
     }
 
     override fun onDestroyView() {

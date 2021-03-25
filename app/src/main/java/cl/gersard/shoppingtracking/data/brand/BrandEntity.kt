@@ -4,10 +4,8 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "brand")
+@Entity(tableName = "Brand")
 data class BrandEntity(
-    @PrimaryKey(autoGenerate = true)
-    val brandId: Long,
-    @ColumnInfo(name = "name")
-    val name: String
+    @PrimaryKey(autoGenerate = true) val brandId: Long,
+    @ColumnInfo(name = "name") val name: String
 )

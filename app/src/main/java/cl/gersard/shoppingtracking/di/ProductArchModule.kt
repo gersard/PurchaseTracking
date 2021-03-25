@@ -5,6 +5,7 @@ import cl.gersard.shoppingtracking.data.product.ProductRepositoryImpl
 import cl.gersard.shoppingtracking.data.product.local.ProductDataSource
 import cl.gersard.shoppingtracking.data.product.local.ProductDataSourceImpl
 import cl.gersard.shoppingtracking.domain.ProductUseCase
+import cl.gersard.shoppingtracking.domain.ProductUseCaseImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -21,5 +22,5 @@ abstract class ProductArchModule {
     abstract fun bindsProductRepository(repoImpl: ProductRepositoryImpl): ProductRepository
 
     @Binds
-    abstract fun bindsProductUseCase(useCase: ProductUseCase): ProductUseCase
+    abstract fun bindsProductUseCase(useCase: ProductUseCaseImpl): ProductUseCase
 }

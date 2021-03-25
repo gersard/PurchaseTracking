@@ -24,12 +24,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun purchaseDao(): PurchaseDao
 
     companion object {
-        const val DATABASE_NAME = "tracking_app"
-//        private var instance: AppDatabase? = null
-
-//        private fun create(context: Context): AppDatabase = Room.databaseBuilder(context, AppDatabase::class.java, DATABASE_NAME).build()
-
-//        fun getInstance(context: Context) = (instance ?: create(context)).also { instance = it }
+        const val DATABASE_NAME = "purchase_tracking_app"
     }
 
 }

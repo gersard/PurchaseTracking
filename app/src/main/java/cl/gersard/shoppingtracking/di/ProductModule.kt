@@ -3,6 +3,7 @@ package cl.gersard.shoppingtracking.di
 import cl.gersard.shoppingtracking.core.AppDatabase
 import cl.gersard.shoppingtracking.data.brand.BrandMapper
 import cl.gersard.shoppingtracking.data.product.ProductMapper
+import cl.gersard.shoppingtracking.data.purchase.PurchaseMapper
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,6 +17,6 @@ object ProductModule {
     fun providesProductDao(db: AppDatabase) = db.productDao()
 
     @Provides
-    fun providesProductMapper(brandMapper: BrandMapper) = ProductMapper(brandMapper)
+    fun providesProductMapper(purchaseMapper: PurchaseMapper, brandMapper: BrandMapper) = ProductMapper(purchaseMapper, brandMapper)
 
 }

@@ -9,6 +9,7 @@ import javax.inject.Inject
 
 class ProductMapper @Inject constructor
     (
+    private val purchaseMapper: PurchaseMapper,
     private val brandMapper: BrandMapper
 ) {
 
@@ -19,7 +20,8 @@ class ProductMapper @Inject constructor
             it.product.name,
             it.product.description,
             brandMapper.mapToBrandDomain(it.brand),
-            it.product.note
+            it.product.note,
+            purchaseMapper.mapToPurchaseDomain(it.purchases)
         )
     }
 

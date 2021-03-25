@@ -6,6 +6,7 @@
     tools:context=".ui.MainActivity">
 
     <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/host_fragment"
         android:name="cl.gersard.shoppingtracking.ui.product.ListProductsFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
