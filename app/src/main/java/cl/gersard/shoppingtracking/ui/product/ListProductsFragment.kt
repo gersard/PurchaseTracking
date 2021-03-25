@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import cl.gersard.shoppingtracking.R
 import cl.gersard.shoppingtracking.databinding.ListProductsFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,6 +29,28 @@ class ListProductsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupRecyclerView()
+        observeLoading()
+        observeProducts()
+        viewModel.fetchProducts()
+    }
+
+    private fun observeProducts() {
+        TODO("Not yet implemented")
+    }
+
+    private fun observeLoading() {
+        viewModel.loadingState.observe(viewLifecycleOwner, Observer {
+            if (it) {
+                viewBinding.pbLoadingProducts.visibility = View.VISIBLE
+            } else {
+                viewBinding.pbLoadingProducts.visibility = View.GONE
+            }
+        })
+    }
+
+    private fun setupRecyclerView() {
+        TODO("Not yet implemented")
     }
 
     override fun onDestroyView() {

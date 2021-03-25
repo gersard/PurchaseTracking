@@ -16,4 +16,5 @@ data class PurchaseEntity(
     @ColumnInfo(name = "date") val date: LocalDateTime,
     @ColumnInfo(name = "discount") val discount: Boolean,
     @ColumnInfo(name = "note") val note: String,
+    @ColumnInfo(name = "market_owner_id") val marketOwnerId: Long,
 )

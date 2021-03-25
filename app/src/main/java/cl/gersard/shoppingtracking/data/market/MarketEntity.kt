@@ -6,7 +6,6 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "Market")
 data class MarketEntity(
-    @ColumnInfo(name = "id")
     @PrimaryKey(autoGenerate = true)
     val marketId: Long,
     @ColumnInfo(name = "name")

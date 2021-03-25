@@ -6,11 +6,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "brand")
 data class BrandEntity(
-    @ColumnInfo(name = "id")
     @PrimaryKey(autoGenerate = true)
     val brandId: Long,
     @ColumnInfo(name = "name")
-    val name: String,
-    @ColumnInfo(name = "productOwnerId")
-    val productOwnerId: Long
+    val name: String
 )

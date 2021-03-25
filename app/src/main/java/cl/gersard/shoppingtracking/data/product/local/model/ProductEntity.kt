@@ -13,4 +13,5 @@ data class ProductEntity(
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "description") val description: String,
     @ColumnInfo(name = "note") val note: String,
+    @ColumnInfo(name = "brandOwnerId") val brandOwnerId: Long
 )
