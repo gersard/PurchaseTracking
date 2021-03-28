@@ -1,4 +1,4 @@
-package cl.gersard.shoppingtracking.domain
+package cl.gersard.shoppingtracking.domain.product
 
 interface ProductUseCase {
 

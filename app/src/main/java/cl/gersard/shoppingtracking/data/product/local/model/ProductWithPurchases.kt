@@ -6,7 +6,6 @@ import androidx.room.Relation
 import cl.gersard.shoppingtracking.data.brand.BrandEntity
 import cl.gersard.shoppingtracking.data.purchase.PurchaseDetailEntity
 import cl.gersard.shoppingtracking.data.purchase.PurchaseEntity
-import cl.gersard.shoppingtracking.domain.Product
 
 
 data class ProductWithPurchases(

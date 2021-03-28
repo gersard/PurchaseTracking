@@ -1,7 +1,7 @@
 package cl.gersard.shoppingtracking.data.product
 
 import cl.gersard.shoppingtracking.data.product.local.ProductDataSource
-import cl.gersard.shoppingtracking.domain.Product
+import cl.gersard.shoppingtracking.domain.product.Product
 import javax.inject.Inject
 
 class ProductRepositoryImpl @Inject constructor(

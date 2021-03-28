@@ -6,11 +6,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import cl.gersard.shoppingtracking.R
+import cl.gersard.shoppingtracking.core.extension.gone
+import cl.gersard.shoppingtracking.core.extension.visible
 import cl.gersard.shoppingtracking.databinding.ListProductsFragmentBinding
+import cl.gersard.shoppingtracking.domain.product.Product
+import cl.gersard.shoppingtracking.domain.product.ProductState
+import cl.gersard.shoppingtracking.ui.product.adapter.ProductAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,15 +43,29 @@ class ListProductsFragment : Fragment() {
     }
 
     private fun observeProducts() {
+        viewModel.productState.observe(viewLifecycleOwner, { productState ->
+            when (productState) {
+                ProductState.Empty -> showEmptyButton()
+                is ProductState.Error -> Toast.makeText(requireContext(), productState.error, Toast.LENGTH_LONG).show()
+                is ProductState.Success -> loadProducts(productState.products)
+            }
+        })
+    }
 
+    private fun loadProducts(products: List<Product>) {
+        (viewBinding.rvProducts.adapter as ProductAdapter).addProducts(products)
+    }
+
+    private fun showEmptyButton() {
+        viewBinding.btnEmptyProducts.visible()
     }
 
     private fun observeLoading() {
         viewModel.loadingState.observe(viewLifecycleOwner, Observer {
             if (it) {
-                viewBinding.pbLoadingProducts.visibility = View.VISIBLE
+                viewBinding.pbLoadingProducts.visible()
             } else {
-                viewBinding.pbLoadingProducts.visibility = View.GONE
+                viewBinding.pbLoadingProducts.gone()
             }
         })
     }
@@ -53,6 +73,9 @@ class ListProductsFragment : Fragment() {
     private fun setupRecyclerView() {
         viewBinding.rvProducts.setHasFixedSize(true)
         viewBinding.rvProducts.layoutManager = LinearLayoutManager(requireContext())
+
+        val productAdapter = ProductAdapter()
+        viewBinding.rvProducts.adapter = productAdapter
     }
 
     override fun onDestroyView() {

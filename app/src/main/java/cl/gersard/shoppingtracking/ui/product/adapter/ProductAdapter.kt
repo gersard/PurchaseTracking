@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import cl.gersard.shoppingtracking.databinding.RowProductBinding
-import cl.gersard.shoppingtracking.domain.Product
+import cl.gersard.shoppingtracking.domain.product.Product
 
 class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 

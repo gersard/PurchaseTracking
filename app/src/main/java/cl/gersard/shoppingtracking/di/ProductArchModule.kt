@@ -4,8 +4,8 @@ import cl.gersard.shoppingtracking.data.product.ProductRepository
 import cl.gersard.shoppingtracking.data.product.ProductRepositoryImpl
 import cl.gersard.shoppingtracking.data.product.local.ProductDataSource
 import cl.gersard.shoppingtracking.data.product.local.ProductDataSourceImpl
-import cl.gersard.shoppingtracking.domain.ProductUseCase
-import cl.gersard.shoppingtracking.domain.ProductUseCaseImpl
+import cl.gersard.shoppingtracking.domain.product.ProductUseCase
+import cl.gersard.shoppingtracking.domain.product.ProductUseCaseImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
