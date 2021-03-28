@@ -1,4 +1,4 @@
-package cl.gersard.shoppingtracking.di
+package cl.gersard.shoppingtracking.di.product
 
 import cl.gersard.shoppingtracking.core.AppDatabase
 import cl.gersard.shoppingtracking.data.brand.BrandMapper

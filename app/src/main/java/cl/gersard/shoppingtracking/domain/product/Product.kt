@@ -1,7 +1,7 @@
 package cl.gersard.shoppingtracking.domain.product
 
-import cl.gersard.shoppingtracking.domain.Brand
-import cl.gersard.shoppingtracking.domain.Purchase
+import cl.gersard.shoppingtracking.domain.brand.Brand
+import cl.gersard.shoppingtracking.domain.purchase.Purchase
 
 data class Product(
     val id: Long,

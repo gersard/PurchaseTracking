@@ -1,7 +1,7 @@
 package cl.gersard.shoppingtracking.data.purchase
 
 import cl.gersard.shoppingtracking.data.market.MarketMapper
-import cl.gersard.shoppingtracking.domain.Purchase
+import cl.gersard.shoppingtracking.domain.purchase.Purchase
 import javax.inject.Inject
 
 class PurchaseMapper @Inject constructor(private val marketMapper: MarketMapper,) {

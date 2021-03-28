@@ -1,6 +1,6 @@
 package cl.gersard.shoppingtracking.data.market
 
-import cl.gersard.shoppingtracking.domain.Market
+import cl.gersard.shoppingtracking.domain.market.Market
 
 
 class MarketMapper {

@@ -1,5 +1,6 @@
-package cl.gersard.shoppingtracking.domain
+package cl.gersard.shoppingtracking.domain.purchase
 
+import cl.gersard.shoppingtracking.domain.market.Market
 import java.time.LocalDateTime
 
 data class Purchase(
