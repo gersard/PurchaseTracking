@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class MarketDataSourceImpl @Inject constructor(private val marketDao: MarketDao) : MarketDataSource {
 
-    override suspend fun insertBrand(marketEntity: MarketEntity): Long {
+    override suspend fun insertMarket(marketEntity: MarketEntity): Long {
         return marketDao.insertMarket(marketEntity)
     }
 }

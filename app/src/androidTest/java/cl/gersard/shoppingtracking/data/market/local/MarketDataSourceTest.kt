@@ -1,4 +1,4 @@
-package cl.gersard.shoppingtracking.data.brand.local
+package cl.gersard.shoppingtracking.data.market.local
 
 import android.content.Context
 import androidx.room.Room
@@ -15,26 +15,26 @@ import java.io.IOException
 import kotlin.jvm.Throws
 
 @RunWith(AndroidJUnit4::class)
-class BrandDataSourceTest {
+class MarketDataSourceTest {
 
     private lateinit var db: AppDatabase
-    private lateinit var brandDao: BrandDao
-    private lateinit var dataSource: BrandDataSource
+    private lateinit var marketDao: MarketDao
+    private lateinit var dataSource: MarketDataSource
 
     @Before
     fun createDb() {
         val context = ApplicationProvider.getApplicationContext<Context>()
         db = Room.inMemoryDatabaseBuilder(context, AppDatabase::class.java).build()
-        brandDao = db.brandDao()
-        dataSource = BrandDataSourceImpl(brandDao)
+        marketDao = db.marketDao()
+        dataSource = MarketDataSourceImpl(marketDao)
     }
 
     @Test
-    fun insertBrand() {
+    fun insertMarket() {
         runBlocking {
-            val brandEntity = BrandUtil.fakeBrandEntity
-            val idInserted = dataSource.insertBrand(brandEntity)
-            assertEquals(brandEntity.brandId, idInserted)
+            val marketEntity = MarketUtil.fakeMarketEntity
+            val idInserted = dataSource.insertMarket(marketEntity)
+            assertEquals(marketEntity.marketId, idInserted)
         }
     }
 

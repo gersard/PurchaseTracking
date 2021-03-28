@@ -9,7 +9,7 @@ class MarketRepositoryImpl @Inject constructor(private val dataSource: MarketDat
 
     override suspend fun insertBrand(market: Market): Boolean {
         return try {
-            dataSource.insertBrand(marketMapper.mapToMarketEntity(market))
+            dataSource.insertMarket(marketMapper.mapToMarketEntity(market))
             true
         } catch (e: Exception) {
             Timber.e(e)

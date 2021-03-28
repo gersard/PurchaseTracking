@@ -3,8 +3,8 @@ package cl.gersard.shoppingtracking.data.market.local
 import cl.gersard.shoppingtracking.data.market.MarketEntity
 
 
-interface MarketDataSource {
+object MarketUtil {
 
-    suspend fun insertMarket(marketEntity: MarketEntity): Long
+    val fakeMarketEntity = MarketEntity(1, "Falabella")
 
 }
