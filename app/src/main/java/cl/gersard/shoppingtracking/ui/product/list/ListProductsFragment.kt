@@ -40,6 +40,11 @@ class ListProductsFragment : Fragment() {
         observeProducts()
         viewModel.fetchProducts()
         viewBinding.btnEmptyProducts.setOnClickListener { viewModel.fetchProducts() }
+        viewBinding.fabAddPurchase.setOnClickListener { addPurchase() }
+    }
+
+    private fun addPurchase() {
+
     }
 
     private fun observeLoading() {
