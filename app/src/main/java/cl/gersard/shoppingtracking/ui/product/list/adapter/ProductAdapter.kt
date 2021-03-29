@@ -1,4 +1,4 @@
-package cl.gersard.shoppingtracking.ui.product.adapter
+package cl.gersard.shoppingtracking.ui.product.list.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

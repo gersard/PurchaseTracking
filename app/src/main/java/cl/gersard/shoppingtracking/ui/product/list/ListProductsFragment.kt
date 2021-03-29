@@ -1,4 +1,4 @@
-package cl.gersard.shoppingtracking.ui.product
+package cl.gersard.shoppingtracking.ui.product.list
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -14,7 +14,7 @@ import cl.gersard.shoppingtracking.core.extension.visible
 import cl.gersard.shoppingtracking.databinding.ListProductsFragmentBinding
 import cl.gersard.shoppingtracking.domain.product.Product
 import cl.gersard.shoppingtracking.domain.product.ProductState
-import cl.gersard.shoppingtracking.ui.product.adapter.ProductAdapter
+import cl.gersard.shoppingtracking.ui.product.list.adapter.ProductAdapter
 import cl.gersard.shoppingtracking.ui.util.MarginItemDecorator
 import dagger.hilt.android.AndroidEntryPoint
 

@@ -1,4 +1,4 @@
-package cl.gersard.shoppingtracking.ui.product
+package cl.gersard.shoppingtracking.ui.product.list
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
