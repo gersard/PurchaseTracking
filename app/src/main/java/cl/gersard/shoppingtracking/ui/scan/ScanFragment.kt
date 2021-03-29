@@ -16,6 +16,7 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import cl.gersard.shoppingtracking.R
+import cl.gersard.shoppingtracking.core.extension.dpToPx
 import cl.gersard.shoppingtracking.databinding.ScanFragmentBinding
 import cl.gersard.shoppingtracking.ui.util.PermissionUtil
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,6 +45,7 @@ class ScanFragment : Fragment(), BarcodeListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewBinding.focusView.drawFocusBox(280.dpToPx(), 160.dpToPx())
         checkPermissions()
     }
 
