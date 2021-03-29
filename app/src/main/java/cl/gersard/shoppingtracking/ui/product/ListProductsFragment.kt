@@ -42,6 +42,16 @@ class ListProductsFragment : Fragment() {
         viewBinding.btnEmptyProducts.setOnClickListener { viewModel.fetchProducts() }
     }
 
+    private fun observeLoading() {
+        viewModel.loadingState.observe(viewLifecycleOwner, {
+            if (it) {
+                viewBinding.pbLoadingProducts.visible()
+            } else {
+                viewBinding.pbLoadingProducts.gone()
+            }
+        })
+    }
+
     private fun observeProducts() {
         viewModel.productState.observe(viewLifecycleOwner, { productState ->
             when (productState) {
@@ -62,15 +72,7 @@ class ListProductsFragment : Fragment() {
         viewBinding.btnEmptyProducts.visible()
     }
 
-    private fun observeLoading() {
-        viewModel.loadingState.observe(viewLifecycleOwner, {
-            if (it) {
-                viewBinding.pbLoadingProducts.visible()
-            } else {
-                viewBinding.pbLoadingProducts.gone()
-            }
-        })
-    }
+
 
     private fun setupRecyclerView() {
         viewBinding.rvProducts.setHasFixedSize(true)

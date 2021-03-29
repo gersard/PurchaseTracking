@@ -38,39 +38,39 @@ class MainActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             // TEST BRANDS
-//            brandUseCase.insertBrand("Colún")
-//            brandUseCase.insertBrand("Ideal")
-//            brandUseCase.insertBrand("Surlat")
-//            brandUseCase.insertBrand("Cachantún")
-//            brandUseCase.insertBrand("PC Factory")
-//
-//            // TEST MARKETS
-//            marketUseCase.insertMarket("Tottus")
-//            marketUseCase.insertMarket("Jumbo")
-//            marketUseCase.insertMarket("Falabella")
-//            marketUseCase.insertMarket("casa royal")
-//            marketUseCase.insertMarket("PC Factory")
-//
-//            // TEST PRODUCT
-//            productUseCase.insertProduct(
-//                Product(
-//                    1, "0001928376123", "leche", "leche de 1 litro descremada", Brand(1, "Colún"), "el envase es de celeste",
-//                    emptyList()
-//                )
-//            )
-//
-//            // TEST PURCHASE
-//            purchaseUseCase.insertPurchase(Purchase(
-//                1,
-//                720,
-//                1,
-//                LocalDateTime.now(),
-//                Market(1,""),
-//                false,
-//                ""
-//            ))
+            brandUseCase.insertBrand("Colún")
+            brandUseCase.insertBrand("Ideal")
+            brandUseCase.insertBrand("Surlat")
+            brandUseCase.insertBrand("Cachantún")
+            brandUseCase.insertBrand("PC Factory")
 
-//            productUseCase.insertProductPurchase(1, 1)
+            // TEST MARKETS
+            marketUseCase.insertMarket("Tottus")
+            marketUseCase.insertMarket("Jumbo")
+            marketUseCase.insertMarket("Falabella")
+            marketUseCase.insertMarket("casa royal")
+            marketUseCase.insertMarket("PC Factory")
+
+            // TEST PRODUCT
+            productUseCase.insertProduct(
+                Product(
+                    1, "0001928376123", "Leche", "leche de 1 litro descremada", Brand(1, "Colún"), "el envase es de celeste",
+                    emptyList()
+                )
+            )
+
+            // TEST PURCHASE
+            purchaseUseCase.insertPurchase(Purchase(
+                1,
+                720,
+                1,
+                LocalDateTime.now(),
+                Market(1,""),
+                false,
+                ""
+            ))
+
+            productUseCase.insertProductPurchase(1, 1)
 
         }
     }
