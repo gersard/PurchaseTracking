@@ -1,6 +1,7 @@
 package cl.gersard.shoppingtracking.data.product
 
 import cl.gersard.shoppingtracking.data.brand.BrandMapper
+import cl.gersard.shoppingtracking.data.product.local.model.ProductEntity
 import cl.gersard.shoppingtracking.data.product.local.model.ProductWithPurchases
 import cl.gersard.shoppingtracking.data.purchase.PurchaseMapper
 import cl.gersard.shoppingtracking.domain.product.Product
@@ -23,5 +24,14 @@ class ProductMapper @Inject constructor
             purchaseMapper.mapToPurchaseDomain(it.purchases)
         )
     }
+
+    fun mapToProductEntity(product: Product) = ProductEntity(
+        product.id,
+        product.barcode,
+        product.name,
+        product.description,
+        product.note,
+        product.brand.id
+    )
 
 }
