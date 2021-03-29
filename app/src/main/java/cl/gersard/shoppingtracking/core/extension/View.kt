@@ -2,6 +2,7 @@ package cl.gersard.shoppingtracking.core.extension
 
 import android.animation.ObjectAnimator
 import android.view.View
+import android.view.ViewTreeObserver
 
 
 fun View.visible(withAnimation: Boolean = false, durationMs: Long = 300) {
@@ -32,3 +33,16 @@ fun View.invisible(withAnimation: Boolean = false, durationMs: Long = 300) {
 }
 
 fun View.isVisible(): Boolean = this.visibility == View.VISIBLE
+
+fun View.afterLayout(laidOut: (View) -> Unit) {
+    if(isLaidOut) {
+        laidOut(this)
+    } else {
+        viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+                viewTreeObserver.removeOnGlobalLayoutListener(this)
+                laidOut(this@afterLayout)
+            }
+        })
+    }
+}
