@@ -51,6 +51,8 @@ class ListProductsFragment : Fragment() {
     }
 
     private fun loadProducts(products: List<Product>) {
+        viewBinding.btnEmptyProducts.gone()
+        viewBinding.rvProducts.visible()
         (viewBinding.rvProducts.adapter as ProductAdapter).addProducts(products)
     }
 
