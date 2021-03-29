@@ -4,13 +4,14 @@ import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
-import timber.log.Timber
 
 class FocusView : View {
 
     private val path = Path()
     private var rect: RectF? = null
     private lateinit var transparentPaint: Paint
+    private lateinit var whiteStrokePaint: Paint
+    var radius: Float = 10f
 
     constructor(context: Context?) : super(context) {
         initPaints()
@@ -25,17 +26,13 @@ class FocusView : View {
     }
 
     fun drawFocusBox(widthBox: Float, heightBox: Float) {
-        post {
-            rect = RectF().apply {
-                left = ((width / 2) - (widthBox / 2))
-                right = (width / 2) + (widthBox / 2)
-                top = (height / 2) - (heightBox / 2)
-                bottom = (height / 2) + (heightBox / 2)
-            }
-            Timber.d("Width $measuredWidth - Height $height")
-            Timber.d(rect?.toString())
-            invalidate()
+        rect = RectF().apply {
+            left = ((width / 2) - (widthBox / 2))
+            right = (width / 2) + (widthBox / 2)
+            top = (height / 2) - (heightBox / 2)
+            bottom = (height / 2) + (heightBox / 2)
         }
+        invalidate()
     }
 
     private fun initPaints() {
@@ -43,16 +40,23 @@ class FocusView : View {
             color = Color.TRANSPARENT
             strokeWidth = 10f
         }
+
+        whiteStrokePaint = Paint().apply {
+            color = Color.WHITE
+            strokeWidth = 6f
+            style = Paint.Style.STROKE
+        }
     }
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         if (rect == null || canvas == null) return
         path.reset()
-        path.addRect(rect!!, Path.Direction.CW)
+        path.addRoundRect(rect!!, radius, radius, Path.Direction.CW)
         path.fillType = Path.FillType.INVERSE_EVEN_ODD
 
         canvas.drawPath(path, transparentPaint)
+        canvas.drawRoundRect(rect!!, radius, radius, whiteStrokePaint)
         canvas.clipPath(path)
         canvas.drawColor(Color.parseColor("#A6000000"))
     }

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
@@ -16,6 +17,7 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import cl.gersard.shoppingtracking.R
+import cl.gersard.shoppingtracking.core.extension.afterLayout
 import cl.gersard.shoppingtracking.core.extension.dpToPx
 import cl.gersard.shoppingtracking.databinding.ScanFragmentBinding
 import cl.gersard.shoppingtracking.ui.util.PermissionUtil
@@ -45,7 +47,12 @@ class ScanFragment : Fragment(), BarcodeListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewBinding.focusView.drawFocusBox(280.dpToPx(), 160.dpToPx())
+        view.afterLayout {
+            val width = view.width * WIDTH_PERCENTAGE
+            val height = view.height * HEIGHT_PERCENTAGE
+            viewBinding.focusView.drawFocusBox(width, height)
+        }
+
         checkPermissions()
     }
 
@@ -85,7 +92,7 @@ class ScanFragment : Fragment(), BarcodeListener {
 
     override fun barcodeDetected(barcode: String) {
         if (processingBarcode.compareAndSet(false, true)) {
-            Timber.d(barcode)
+            Toast.makeText(requireContext(), barcode, Toast.LENGTH_LONG).show()
         }
     }
 
@@ -100,6 +107,8 @@ class ScanFragment : Fragment(), BarcodeListener {
 
     companion object {
         private const val REQUIRED_PERMISSION = Manifest.permission.CAMERA
+        private const val WIDTH_PERCENTAGE = 0.8f
+        private const val HEIGHT_PERCENTAGE = 0.25F
 
         fun newInstance() = ScanFragment()
     }
