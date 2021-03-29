@@ -1,9 +1,7 @@
-package cl.gersard.shoppingtracking.di
+package cl.gersard.shoppingtracking.di.purchase
 
 import cl.gersard.shoppingtracking.core.AppDatabase
-import cl.gersard.shoppingtracking.data.brand.BrandMapper
 import cl.gersard.shoppingtracking.data.market.MarketMapper
-import cl.gersard.shoppingtracking.data.product.ProductMapper
 import cl.gersard.shoppingtracking.data.purchase.PurchaseMapper
 import dagger.Module
 import dagger.Provides
@@ -14,8 +12,8 @@ import dagger.hilt.android.components.ActivityRetainedComponent
 @InstallIn(ActivityRetainedComponent::class)
 object PurchaseModule {
 
-//    @Provides
-//    fun providesProductDao(db: AppDatabase) = db.productDao()
+    @Provides
+    fun providesPurchaseDao(db: AppDatabase) = db.purchaseDao()
 
     @Provides
     fun providesPurchaseMapper(marketMapper: MarketMapper) = PurchaseMapper(marketMapper)

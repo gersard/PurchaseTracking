@@ -11,9 +11,6 @@ class ProductUseCaseImpl @Inject constructor(private val repository: ProductRepo
     }
 
     override suspend fun insertProduct(product: Product) {
-        product.name.capitalize(Locale.ROOT)
-        product.description.capitalize(Locale.ROOT)
-        product.note.capitalize(Locale.ROOT)
         repository.insertProduct(product)
     }
 

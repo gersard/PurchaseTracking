@@ -9,7 +9,7 @@ import java.time.LocalDateTime
 @Entity(tableName = "Purchase")
 data class PurchaseEntity(
     @PrimaryKey(autoGenerate = true) val purchaseId: Long,
-    @ColumnInfo(name = "total") val total: Int,
+    @ColumnInfo(name = "price") val price: Int,
     @ColumnInfo(name = "quantity") val quantity: Int,
     @ColumnInfo(name = "date") val date: LocalDateTime,
     @ColumnInfo(name = "discount") val discount: Boolean,
