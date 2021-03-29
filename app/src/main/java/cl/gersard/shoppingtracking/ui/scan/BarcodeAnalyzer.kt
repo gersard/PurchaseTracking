@@ -20,9 +20,7 @@ class BarcodeAnalyzer(private val barcodeListener: BarcodeListener) : ImageAnaly
                 .addOnSuccessListener { barcodes ->
                     barcodes.forEach { barcode -> if (barcode.rawValue?.isNotEmpty() == true) barcodeListener.barcodeDetected(barcode.rawValue!!) }
                 }
-                .addOnFailureListener {
-
-                }
+                .addOnFailureListener { barcodeListener.errorDetection(it) }
                 .addOnCompleteListener { imageProxy.close() }
         }
     }

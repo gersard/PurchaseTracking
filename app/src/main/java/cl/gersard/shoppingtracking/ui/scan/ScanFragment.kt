@@ -44,19 +44,21 @@ class ScanFragment : Fragment(), BarcodeListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        checkPermissions()
+    }
+
+    private fun checkPermissions() {
         if (PermissionUtil.allPermissionsGranted(requireContext(), arrayOf(REQUIRED_PERMISSION))) {
             startCamera()
         } else {
-            val launcher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
                 if (isGranted) {
                     startCamera()
                 } else {
                     //TODO Show dialog
                 }
-            }
-            launcher.launch(REQUIRED_PERMISSION)
+            }.launch(REQUIRED_PERMISSION)
         }
-
     }
 
     private fun startCamera() {
@@ -67,6 +69,7 @@ class ScanFragment : Fragment(), BarcodeListener {
             val preview = Preview.Builder().build().also { it.setSurfaceProvider(viewBinding.previewView.surfaceProvider) }
 
             val imageAnalysis = ImageAnalysis.Builder()
+                .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                 .build()
                 .also { it.setAnalyzer(cameraExecutor, BarcodeAnalyzer(this)) }
 
@@ -84,14 +87,17 @@ class ScanFragment : Fragment(), BarcodeListener {
         }
     }
 
+    override fun errorDetection(error: Exception) {
+        Timber.e(error)
+    }
+
     override fun onDestroyView() {
         cameraExecutor.shutdown()
         super.onDestroyView()
     }
 
     companion object {
-        private val REQUIRED_PERMISSION = Manifest.permission.CAMERA
-        private const val REQUEST_CODE_PERMISSIONS = 10
+        private const val REQUIRED_PERMISSION = Manifest.permission.CAMERA
 
         fun newInstance() = ScanFragment()
     }
