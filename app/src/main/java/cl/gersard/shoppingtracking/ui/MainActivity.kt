@@ -2,6 +2,7 @@ package cl.gersard.shoppingtracking.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import cl.gersard.shoppingtracking.R
 import cl.gersard.shoppingtracking.domain.brand.Brand
@@ -38,40 +39,49 @@ class MainActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             // TEST BRANDS
-            brandUseCase.insertBrand("Colún")
-            brandUseCase.insertBrand("Ideal")
-            brandUseCase.insertBrand("Surlat")
-            brandUseCase.insertBrand("Cachantún")
-            brandUseCase.insertBrand("PC Factory")
-
-            // TEST MARKETS
-            marketUseCase.insertMarket("Tottus")
-            marketUseCase.insertMarket("Jumbo")
-            marketUseCase.insertMarket("Falabella")
-            marketUseCase.insertMarket("casa royal")
-            marketUseCase.insertMarket("PC Factory")
-
-            // TEST PRODUCT
-            productUseCase.insertProduct(
-                Product(
-                    1, "0001928376123", "Leche", "leche de 1 litro descremada", Brand(1, "Colún"), "el envase es de celeste",
-                    emptyList()
-                )
-            )
-
-            // TEST PURCHASE
-            purchaseUseCase.insertPurchase(Purchase(
-                1,
-                720,
-                1,
-                LocalDateTime.now(),
-                Market(1,""),
-                false,
-                ""
-            ))
-
-            productUseCase.insertProductPurchase(1, 1)
+//            brandUseCase.insertBrand("Colún")
+//            brandUseCase.insertBrand("Ideal")
+//            brandUseCase.insertBrand("Surlat")
+//            brandUseCase.insertBrand("Cachantún")
+//            brandUseCase.insertBrand("PC Factory")
+//
+//            // TEST MARKETS
+//            marketUseCase.insertMarket("Tottus")
+//            marketUseCase.insertMarket("Jumbo")
+//            marketUseCase.insertMarket("Falabella")
+//            marketUseCase.insertMarket("casa royal")
+//            marketUseCase.insertMarket("PC Factory")
+//
+//            // TEST PRODUCT
+//            productUseCase.insertProduct(
+//                Product(
+//                    1, "0001928376123", "Leche", "leche de 1 litro descremada", Brand(1, "Colún"), "el envase es de celeste",
+//                    emptyList()
+//                )
+//            )
+//
+//            // TEST PURCHASE
+//            purchaseUseCase.insertPurchase(
+//                Purchase(
+//                    1,
+//                    720,
+//                    1,
+//                    LocalDateTime.now(),
+//                    Market(1, ""),
+//                    false,
+//                    ""
+//                )
+//            )
+//
+//            productUseCase.insertProductPurchase(1, 1)
 
         }
+    }
+
+    fun changeFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.host_fragment, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 }

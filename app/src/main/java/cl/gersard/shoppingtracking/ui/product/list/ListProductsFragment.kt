@@ -14,7 +14,9 @@ import cl.gersard.shoppingtracking.core.extension.visible
 import cl.gersard.shoppingtracking.databinding.ListProductsFragmentBinding
 import cl.gersard.shoppingtracking.domain.product.Product
 import cl.gersard.shoppingtracking.domain.product.ProductState
+import cl.gersard.shoppingtracking.ui.MainActivity
 import cl.gersard.shoppingtracking.ui.product.list.adapter.ProductAdapter
+import cl.gersard.shoppingtracking.ui.scan.ScanFragment
 import cl.gersard.shoppingtracking.ui.util.MarginItemDecorator
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -44,7 +46,7 @@ class ListProductsFragment : Fragment() {
     }
 
     private fun addPurchase() {
-
+        (requireActivity() as MainActivity).changeFragment(ScanFragment.newInstance())
     }
 
     private fun observeLoading() {
@@ -76,7 +78,6 @@ class ListProductsFragment : Fragment() {
     private fun showEmptyButton() {
         viewBinding.btnEmptyProducts.visible()
     }
-
 
 
     private fun setupRecyclerView() {
