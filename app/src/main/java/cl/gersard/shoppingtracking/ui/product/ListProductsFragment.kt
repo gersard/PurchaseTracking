@@ -8,12 +8,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import cl.gersard.shoppingtracking.R
 import cl.gersard.shoppingtracking.core.extension.gone
 import cl.gersard.shoppingtracking.core.extension.visible
 import cl.gersard.shoppingtracking.databinding.ListProductsFragmentBinding
 import cl.gersard.shoppingtracking.domain.product.Product
 import cl.gersard.shoppingtracking.domain.product.ProductState
 import cl.gersard.shoppingtracking.ui.product.adapter.ProductAdapter
+import cl.gersard.shoppingtracking.ui.util.MarginItemDecorator
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -72,6 +74,12 @@ class ListProductsFragment : Fragment() {
 
     private fun setupRecyclerView() {
         viewBinding.rvProducts.setHasFixedSize(true)
+        viewBinding.rvProducts.addItemDecoration(
+            MarginItemDecorator(
+                resources.getDimension(R.dimen.margin_vertical_product_list_item).toInt(),
+                resources.getDimension(R.dimen.margin_horizontal_product_list_item).toInt()
+            )
+        )
         viewBinding.rvProducts.layoutManager = LinearLayoutManager(requireContext())
 
         val productAdapter = ProductAdapter()
