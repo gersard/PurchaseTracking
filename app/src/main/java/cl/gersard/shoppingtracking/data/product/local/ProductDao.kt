@@ -18,4 +18,7 @@ interface ProductDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertProductPurchase(productPurchaseCrossRef: ProductPurchaseCrossRef): Long
 
+    @Query("SELECT * FROM product WHERE barcode = :barcode")
+    suspend fun getProduct(barcode: String): ProductEntity
+
 }

@@ -12,7 +12,7 @@ class FocusView : View {
     private val path = Path()
     private lateinit var transparentPaint: Paint
     private lateinit var whiteStrokePaint: Paint
-    var radius: Float = 10f
+    private var radius: Float = 10f
     var rect: RectF? = null
 
     constructor(context: Context?) : super(context) {
