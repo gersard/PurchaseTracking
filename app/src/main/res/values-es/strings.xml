@@ -8,4 +8,8 @@
     <string name="title_products">Productos</string>
     <string name="content_description_menu_product">Product options menu</string>
     <string name="last_purchase_price">Precio ult. compra:</string>
+    <string name="title_dialog_permission_camera">Permiso necesario</string>
+    <string name="message_dialog_permission_camera">Para escanear el código de barras de un producto debes permitir usar la cámara</string>
+    <string name="button_positive_text_dialog_permission">Permitir</string>
+    <string name="button_negative_text_dialog_permission">Denegar</string>
 </resources>

@@ -1,8 +1,6 @@
 package cl.gersard.shoppingtracking.ui.scan
 
 import android.Manifest
-import android.content.pm.PackageManager
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.Preview
@@ -18,7 +17,6 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import cl.gersard.shoppingtracking.R
 import cl.gersard.shoppingtracking.core.extension.afterLayout
-import cl.gersard.shoppingtracking.core.extension.dpToPx
 import cl.gersard.shoppingtracking.databinding.ScanFragmentBinding
 import cl.gersard.shoppingtracking.ui.util.PermissionUtil
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,6 +33,13 @@ class ScanFragment : Fragment(), BarcodeListener {
     private val viewModel by viewModels<ScanViewModel>()
     private var processingBarcode = AtomicBoolean(false)
     private lateinit var cameraExecutor: ExecutorService
+    private val activityResultLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+        if (isGranted) {
+            startCamera()
+        } else {
+            showPermissionDialog()
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,21 +59,28 @@ class ScanFragment : Fragment(), BarcodeListener {
 
             checkPermissions()
         }
-
-
     }
 
     private fun checkPermissions() {
         if (PermissionUtil.allPermissionsGranted(requireContext(), arrayOf(REQUIRED_PERMISSION))) {
             startCamera()
         } else {
-            registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
-                if (isGranted) {
-                    startCamera()
-                } else {
-                    //TODO Show dialog
+            activityResultLauncher.launch(REQUIRED_PERMISSION)
+        }
+    }
+
+    private fun showPermissionDialog() {
+        if (isAdded) {
+            AlertDialog.Builder(requireContext())
+                .setTitle(getString(R.string.title_dialog_permission_camera))
+                .setMessage(getString(R.string.message_dialog_permission_camera))
+                .setPositiveButton(getString(R.string.button_positive_text_dialog_permission)) { _, _ -> checkPermissions() }
+                .setNegativeButton(getString(R.string.button_negative_text_dialog_permission)) { dialog, _ ->
+                    dialog.dismiss()
+                    requireActivity().onBackPressed()
                 }
-            }.launch(REQUIRED_PERMISSION)
+                .create()
+                .show()
         }
     }
 
@@ -104,6 +116,7 @@ class ScanFragment : Fragment(), BarcodeListener {
     override fun barcodeDetected(barcode: String) {
         if (processingBarcode.compareAndSet(false, true)) {
             Toast.makeText(requireContext(), barcode, Toast.LENGTH_LONG).show()
+            viewModel.searchProduct(barcode)
         }
     }
 

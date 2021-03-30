@@ -8,4 +8,9 @@
     <string name="title_products">Products</string>
     <string name="content_description_menu_product">Product options menu</string>
     <string name="last_purchase_price">Last purch. price:</string>
+
+    <string name="title_dialog_permission_camera">Required Permissions</string>
+    <string name="message_dialog_permission_camera">To scan the product\'s barcode you must be allow the camera permission</string>
+    <string name="button_positive_text_dialog_permission">Allow</string>
+    <string name="button_negative_text_dialog_permission">Deny</string>
 </resources>
