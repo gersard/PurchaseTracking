@@ -51,9 +51,11 @@ class ScanFragment : Fragment(), BarcodeListener {
             val width = view.width * WIDTH_PERCENTAGE
             val height = view.height * HEIGHT_PERCENTAGE
             viewBinding.focusView.drawFocusBox(width, height)
+
+            checkPermissions()
         }
 
-        checkPermissions()
+
     }
 
     private fun checkPermissions() {
@@ -80,7 +82,16 @@ class ScanFragment : Fragment(), BarcodeListener {
             val imageAnalysis = ImageAnalysis.Builder()
                 .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                 .build()
-                .also { it.setAnalyzer(cameraExecutor, BarcodeAnalyzer(this)) }
+                .also {
+                    it.setAnalyzer(
+                        cameraExecutor, BarcodeAnalyzer(
+                            this,
+                            viewBinding.previewView.width.toFloat(),
+                            viewBinding.previewView.height.toFloat(),
+                            viewBinding.focusView.rect
+                        )
+                    )
+                }
 
             val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 

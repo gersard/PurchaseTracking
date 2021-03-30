@@ -11,4 +11,6 @@
     <color name="transparent">#00FFFFFF</color>
     <color name="white">#FFFFFF</color>
     <color name="white_shadow_text">#CCCACACA</color>
+
+    <color name="opacity_camera_scanner">#A6000000</color>
 </resources>

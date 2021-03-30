@@ -4,14 +4,16 @@ import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
+import androidx.core.content.ContextCompat
+import cl.gersard.shoppingtracking.R
 
 class FocusView : View {
 
     private val path = Path()
-    private var rect: RectF? = null
     private lateinit var transparentPaint: Paint
     private lateinit var whiteStrokePaint: Paint
     var radius: Float = 10f
+    var rect: RectF? = null
 
     constructor(context: Context?) : super(context) {
         initPaints()
@@ -58,7 +60,7 @@ class FocusView : View {
         canvas.drawPath(path, transparentPaint)
         canvas.drawRoundRect(rect!!, radius, radius, whiteStrokePaint)
         canvas.clipPath(path)
-        canvas.drawColor(Color.parseColor("#A6000000"))
+        canvas.drawColor(ContextCompat.getColor(context, R.color.opacity_camera_scanner))
     }
 
 }
