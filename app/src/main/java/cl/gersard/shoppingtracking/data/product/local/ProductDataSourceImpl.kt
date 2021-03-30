@@ -13,4 +13,6 @@ class ProductDataSourceImpl @Inject constructor(private val productDao: ProductD
 
     override suspend fun insertProductPurchase(productPurchaseCrossRef: ProductPurchaseCrossRef): Long =
         productDao.insertProductPurchase(productPurchaseCrossRef)
+
+    override suspend fun getProduct(barcode: String): ProductEntity? = productDao.getProduct(barcode)
 }

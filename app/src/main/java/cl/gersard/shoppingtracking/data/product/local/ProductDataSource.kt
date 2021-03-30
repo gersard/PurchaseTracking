@@ -12,4 +12,6 @@ interface ProductDataSource {
 
     suspend fun insertProductPurchase(productPurchaseCrossRef: ProductPurchaseCrossRef): Long
 
+    suspend fun getProduct(barcode: String): ProductEntity?
+
 }
