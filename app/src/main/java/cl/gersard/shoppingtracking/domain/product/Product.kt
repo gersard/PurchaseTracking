@@ -10,5 +10,5 @@ data class Product(
     val description: String,
     val brand: Brand,
     val note: String,
-    val purchases: List<Purchase>
+    val purchases: List<Purchase>?
 )
