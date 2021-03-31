@@ -4,12 +4,10 @@ import cl.gersard.shoppingtracking.domain.brand.Brand
 
 class BrandMapper {
 
-    fun mapToBrandDomain(brandEntity: BrandEntity) = Brand(
-        brandEntity.brandId, brandEntity.name,
-    )
+    fun mapToBrandDomain(brandEntity: List<BrandEntity>) = brandEntity.map { mapToBrandDomain(it) }
 
-    fun mapToBrandEntity(brand: Brand) = BrandEntity(
-        brand.id, brand.name
-    )
+    fun mapToBrandDomain(brandEntity: BrandEntity) = Brand(brandEntity.brandId, brandEntity.name)
+
+    fun mapToBrandEntity(brand: Brand) = BrandEntity(brand.id, brand.name)
 
 }

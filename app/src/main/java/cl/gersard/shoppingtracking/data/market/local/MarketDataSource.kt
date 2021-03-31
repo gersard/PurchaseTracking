@@ -7,4 +7,6 @@ interface MarketDataSource {
 
     suspend fun insertMarket(marketEntity: MarketEntity): Long
 
+    suspend fun getAllMarkets(): List<MarketEntity>
+
 }

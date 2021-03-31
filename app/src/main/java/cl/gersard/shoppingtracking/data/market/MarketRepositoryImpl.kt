@@ -16,4 +16,10 @@ class MarketRepositoryImpl @Inject constructor(private val dataSource: MarketDat
             false
         }
     }
+
+    override suspend fun getAllMarkets(): List<Market> = try {
+        marketMapper.mapToMarketDomain(dataSource.getAllMarkets())
+    } catch (e: Exception) {
+        emptyList()
+    }
 }

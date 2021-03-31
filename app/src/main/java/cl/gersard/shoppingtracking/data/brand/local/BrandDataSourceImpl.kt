@@ -5,8 +5,8 @@ import javax.inject.Inject
 
 class BrandDataSourceImpl @Inject constructor(private val brandDao: BrandDao) : BrandDataSource {
 
-    override suspend fun insertBrand(brandEntity: BrandEntity): Long {
-        return brandDao.insertBrand(brandEntity)
-    }
+    override suspend fun insertBrand(brandEntity: BrandEntity): Long = brandDao.insertBrand(brandEntity)
+
+    override suspend fun getAllBrands(): List<BrandEntity> = brandDao.getAllBrands()
 
 }

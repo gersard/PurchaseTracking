@@ -16,4 +16,12 @@ class BrandRepositoryImpl @Inject constructor(private val dataSource: BrandDataS
             false
         }
     }
+
+    override suspend fun getAllBrands(): List<Brand> {
+        return try {
+            brandMapper.mapToBrandDomain(dataSource.getAllBrands())
+        } catch (e: Exception) {
+            emptyList()
+        }
+    }
 }

@@ -6,4 +6,6 @@ interface BrandDataSource {
 
     suspend fun insertBrand(brandEntity: BrandEntity): Long
 
+    suspend fun getAllBrands(): List<BrandEntity>
+
 }

@@ -6,4 +6,6 @@ interface BrandRepository {
 
     suspend fun insertBrand(brand: Brand): Boolean
 
+    suspend fun getAllBrands(): List<Brand>
+
 }

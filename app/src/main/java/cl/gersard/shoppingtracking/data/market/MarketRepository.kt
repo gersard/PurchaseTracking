@@ -6,4 +6,6 @@ interface MarketRepository {
 
     suspend fun insertBrand(market: Market): Boolean
 
+    suspend fun getAllMarkets(): List<Market>
+
 }
