@@ -64,7 +64,7 @@ class ListProductsFragment : Fragment() {
             when (productState) {
                 ProductState.Empty -> showEmptyButton()
                 is ProductState.Error -> Toast.makeText(requireContext(), productState.error, Toast.LENGTH_LONG).show()
-                is ProductState.Success -> loadProducts(productState.products)
+                is ProductState.Success -> loadProducts(productState.data)
             }
         })
     }

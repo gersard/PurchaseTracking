@@ -1,8 +1,8 @@
 package cl.gersard.shoppingtracking.domain.product
 
-sealed class ProductState {
-    data class Success(var products: List<Product>) : ProductState()
-    data class Error(var error: String): ProductState()
-    object Empty: ProductState()
+sealed class ProductState<out T> {
+    data class Success<out T>(val data: T) : ProductState<T>()
+    data class Error(var error: String) : ProductState<Nothing>()
+    object Empty : ProductState<Nothing>()
 
 }

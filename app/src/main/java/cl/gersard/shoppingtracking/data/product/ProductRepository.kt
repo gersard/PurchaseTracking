@@ -10,4 +10,6 @@ interface ProductRepository {
 
     suspend fun insertProductPurchase(idPurchase: Long, idProduct: Long): Boolean
 
+    suspend fun getProduct(barcode: String): Product?
+
 }

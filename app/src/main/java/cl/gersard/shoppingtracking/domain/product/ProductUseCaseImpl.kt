@@ -17,4 +17,17 @@ class ProductUseCaseImpl @Inject constructor(private val repository: ProductRepo
     override suspend fun insertProductPurchase(idProduct: Long, idPurchase: Long) {
         repository.insertProductPurchase(idProduct, idPurchase)
     }
+
+    override suspend fun searchProduct(barcode: String): ProductState<Product> {
+        val product = repository.getProduct(barcode)
+        return try {
+            if (product != null) {
+                ProductState.Success(product)
+            } else {
+                ProductState.Empty
+            }
+        } catch (e: Exception) {
+            ProductState.Error("An error has occurred while searching")
+        }
+    }
 }

@@ -8,4 +8,6 @@ interface ProductUseCase {
 
     suspend fun insertProductPurchase(idProduct: Long, idPurchase: Long)
 
+    suspend fun searchProduct(barcode: String): ProductState<Product>
+
 }

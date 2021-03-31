@@ -3,6 +3,7 @@ package cl.gersard.shoppingtracking.data.product.local
 import androidx.room.*
 import cl.gersard.shoppingtracking.data.product.local.model.ProductEntity
 import cl.gersard.shoppingtracking.data.product.local.model.ProductPurchaseCrossRef
+import cl.gersard.shoppingtracking.data.product.local.model.ProductWithBrand
 import cl.gersard.shoppingtracking.data.product.local.model.ProductWithPurchases
 
 @Dao
@@ -19,6 +20,6 @@ interface ProductDao {
     suspend fun insertProductPurchase(productPurchaseCrossRef: ProductPurchaseCrossRef): Long
 
     @Query("SELECT * FROM product WHERE barcode = :barcode")
-    suspend fun getProduct(barcode: String): ProductEntity?
+    suspend fun getProduct(barcode: String): ProductWithBrand?
 
 }

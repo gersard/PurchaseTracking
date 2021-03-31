@@ -2,6 +2,7 @@ package cl.gersard.shoppingtracking.data.product.local
 
 import cl.gersard.shoppingtracking.data.product.local.model.ProductEntity
 import cl.gersard.shoppingtracking.data.product.local.model.ProductPurchaseCrossRef
+import cl.gersard.shoppingtracking.data.product.local.model.ProductWithBrand
 import cl.gersard.shoppingtracking.data.product.local.model.ProductWithPurchases
 
 interface ProductDataSource {
@@ -12,6 +13,6 @@ interface ProductDataSource {
 
     suspend fun insertProductPurchase(productPurchaseCrossRef: ProductPurchaseCrossRef): Long
 
-    suspend fun getProduct(barcode: String): ProductEntity?
+    suspend fun getProduct(barcode: String): ProductWithBrand?
 
 }

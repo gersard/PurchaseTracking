@@ -3,6 +3,7 @@ package cl.gersard.shoppingtracking.ui.product.list
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import cl.gersard.shoppingtracking.domain.product.Product
 import cl.gersard.shoppingtracking.domain.product.ProductState
 import cl.gersard.shoppingtracking.domain.product.ProductUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,7 +16,7 @@ class ListProductsViewModel @Inject constructor(private val useCase: ProductUseC
     private var _loadingState: MutableLiveData<Boolean> = MutableLiveData()
     val loadingState get() = _loadingState
 
-    private var _productState: MutableLiveData<ProductState> = MutableLiveData()
+    private var _productState: MutableLiveData<ProductState<List<Product>>> = MutableLiveData()
     val productState get() = _productState
 
     fun fetchProducts() {

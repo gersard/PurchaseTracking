@@ -1,5 +1,6 @@
 package cl.gersard.shoppingtracking.ui.scan
 
+import android.animation.ObjectAnimator
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
@@ -44,7 +45,7 @@ class FocusView : View {
         }
 
         whiteStrokePaint = Paint().apply {
-            color = Color.WHITE
+            color = ContextCompat.getColor(context, R.color.white)
             strokeWidth = 6f
             style = Paint.Style.STROKE
         }
@@ -62,5 +63,6 @@ class FocusView : View {
         canvas.clipPath(path)
         canvas.drawColor(ContextCompat.getColor(context, R.color.opacity_camera_scanner))
     }
+
 
 }

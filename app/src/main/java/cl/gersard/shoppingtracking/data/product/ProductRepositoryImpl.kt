@@ -30,4 +30,13 @@ class ProductRepositoryImpl @Inject constructor(
         Timber.e(e)
         false
     }
+
+    override suspend fun getProduct(barcode: String): Product? {
+        val product = dataSource.getProduct(barcode)
+        return if (product != null) {
+            productMapper.mapToProductDomain(product)
+        } else {
+            null
+        }
+    }
 }
