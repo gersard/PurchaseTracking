@@ -13,4 +13,25 @@
     <string name="message_dialog_permission_camera">To scan the product\'s barcode you must be allow the camera permission</string>
     <string name="button_positive_text_dialog_permission">Allow</string>
     <string name="button_negative_text_dialog_permission">Deny</string>
+
+<!--    PRODUCT INFO-->
+    <string name="title_product">Product</string>
+    <string name="hint_product_name">Name</string>
+    <string name="hint_product_description">Description</string>
+    <string name="hint_product_brand">Brand</string>
+    <string name="hint_product_barcode">Barcode</string>
+    <string name="hint_product_note">Note</string>
+
+    <!--    PURCHASE INFO-->
+    <string name="title_purchase">Purchase</string>
+    <string name="hint_purchase_total">Total</string>
+    <string name="hint_purchase_quantity">Quantity</string>
+    <string name="title_purchase_had_discount">Had a discount?</string>
+    <string name="hint_purchase_market">Market</string>
+    <string name="hint_purchase_date">Date</string>
+    <string name="hint_purchase_note">Note</string>
+
+
+
+    <string name="save_product_purchase">Save</string>
 </resources>

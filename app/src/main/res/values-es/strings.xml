@@ -12,4 +12,26 @@
     <string name="message_dialog_permission_camera">Para escanear el código de barras de un producto debes permitir usar la cámara</string>
     <string name="button_positive_text_dialog_permission">Permitir</string>
     <string name="button_negative_text_dialog_permission">Denegar</string>
+
+
+    <!--    PRODUCT INFO-->
+    <string name="title_product">Producto</string>
+    <string name="hint_product_name">Nombre</string>
+    <string name="hint_product_description">Descripción</string>
+    <string name="hint_product_brand">Marca</string>
+    <string name="hint_product_barcode">Código de barras</string>
+    <string name="hint_product_note">Nota</string>
+
+    <!--    PURCHASE INFO-->
+    <string name="title_purchase">Compra</string>
+    <string name="hint_purchase_total">Total</string>
+    <string name="hint_purchase_quantity">Cantidad</string>
+    <string name="title_purchase_had_discount">Precio con descuento</string>
+    <string name="hint_purchase_market">Establecimiento</string>
+    <string name="hint_purchase_date">Fecha de compra</string>
+    <string name="hint_purchase_note">Nota</string>
+
+
+
+    <string name="save_product_purchase">Guardar</string>
 </resources>

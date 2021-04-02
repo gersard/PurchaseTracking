@@ -2,16 +2,17 @@
     <!-- Base application theme. -->
     <style name="Theme.PurchaseTracking" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/background_primary</item>
-        <item name="colorPrimaryVariant">@color/background_primary</item>
+        <item name="colorPrimary">@color/background_1</item>
+        <item name="colorPrimaryVariant">@color/background_1</item>
         <item name="colorOnPrimary">@color/accent</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/background_secondary</item>
-        <item name="colorSecondaryVariant">@color/background_secondary</item>
+        <item name="colorSecondary">@color/background_2</item>
+        <item name="colorSecondaryVariant">@color/background_2</item>
         <item name="colorOnSecondary">@color/accent</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+
+        <item name="android:windowBackground">@color/background_1</item>
     </style>
 
     <style name="Theme.PurchaseTracking.NoActionBar">
@@ -19,7 +20,19 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="Title_text" parent="Theme.PurchaseTracking">
+        <item name="android:textColor">@color/text_color_primary</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 
+    <style name="EditText_form" parent="Theme.PurchaseTracking">
+        <item name="android:height">@dimen/height_edit_text_form</item>
+        <item name="android:textColorHint">@color/hint_edittext_form</item>
+        <item name="android:background">@drawable/bg_rounded_corners</item>
+        <item name="android:layout_marginTop">@dimen/margin_top_et_form</item>
+        <item name="backgroundTint">@color/background_3</item>
+    </style>
 
 
 </resources>
