@@ -78,10 +78,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun changeFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction()
+    fun changeFragment(fragment: Fragment, addToBackStack: Boolean) {
+        val transaction = supportFragmentManager.beginTransaction()
             .replace(R.id.host_fragment, fragment)
-            .addToBackStack(null)
-            .commit()
+        if (addToBackStack) transaction.addToBackStack(null)
+        transaction.commit()
     }
 }

@@ -21,6 +21,8 @@ import cl.gersard.shoppingtracking.R
 import cl.gersard.shoppingtracking.core.extension.afterLayout
 import cl.gersard.shoppingtracking.databinding.ScanFragmentBinding
 import cl.gersard.shoppingtracking.domain.product.ProductState
+import cl.gersard.shoppingtracking.ui.MainActivity
+import cl.gersard.shoppingtracking.ui.purchase.PurchaseFragment
 import cl.gersard.shoppingtracking.ui.util.PermissionUtil
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
@@ -137,7 +139,8 @@ class ScanFragment : Fragment(), BarcodeListener {
 
     override fun barcodeDetected(barcode: String) {
         if (processingBarcode.compareAndSet(false, true)) {
-            viewModel.searchProduct(barcode)
+//            viewModel.searchProduct(barcode)
+            (requireActivity() as MainActivity).changeFragment(PurchaseFragment.newInstance(barcode), false)
         }
     }
 
@@ -148,6 +151,7 @@ class ScanFragment : Fragment(), BarcodeListener {
     override fun onDestroyView() {
         cameraExecutor.shutdown()
         super.onDestroyView()
+        _viewBinding = null
     }
 
     companion object {

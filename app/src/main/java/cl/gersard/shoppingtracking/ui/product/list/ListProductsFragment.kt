@@ -46,7 +46,7 @@ class ListProductsFragment : Fragment() {
     }
 
     private fun addPurchase() {
-        (requireActivity() as MainActivity).changeFragment(ScanFragment.newInstance())
+        (requireActivity() as MainActivity).changeFragment(ScanFragment.newInstance(),true)
     }
 
     private fun observeLoading() {
