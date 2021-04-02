@@ -14,4 +14,8 @@ class BrandUseCaseImpl @Inject constructor(private val repository: BrandReposito
         }
 
     }
+
+    override suspend fun getBrands(): List<Brand> {
+        return repository.getAllBrands()
+    }
 }

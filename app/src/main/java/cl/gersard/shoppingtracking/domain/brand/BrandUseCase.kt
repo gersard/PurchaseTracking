@@ -4,4 +4,6 @@ interface BrandUseCase {
 
     suspend fun insertBrand(name: String)
 
+    suspend fun getBrands(): List<Brand>
+
 }

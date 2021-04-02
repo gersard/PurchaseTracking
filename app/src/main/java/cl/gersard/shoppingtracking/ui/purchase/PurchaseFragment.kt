@@ -1,13 +1,12 @@
 package cl.gersard.shoppingtracking.ui.purchase
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.Toast
+import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
 import cl.gersard.shoppingtracking.R
 import cl.gersard.shoppingtracking.core.extension.gone
@@ -19,7 +18,7 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class PurchaseFragment : Fragment() {
+class PurchaseFragment : Fragment(), View.OnTouchListener {
 
     private val viewModel by viewModels<PurchaseViewModel>()
     private var _viewBinding: PurchaseFragmentBinding? = null
@@ -35,11 +34,23 @@ class PurchaseFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        observeBrands()
         observeProductState()
         observeContainersCollapse()
+        viewModel.fetchBrands()
         viewModel.searchProduct(arguments?.getString(BARCODE_PRODUCT, "")!!)
 
         viewBinding.ibActionProductInfo.setOnClickListener { viewModel.collapseContainerProductInfo() }
+        viewBinding.atvProductBrand.setOnTouchListener(this)
+    }
+
+    private fun observeBrands() {
+        viewModel.brandsState.observe(viewLifecycleOwner, { brands ->
+
+            val brandsName = brands.map { it.name }
+            val adapter = ArrayAdapter(requireContext(), R.layout.row_text_simple, brandsName)
+            viewBinding.atvProductBrand.setAdapter(adapter)
+        })
     }
 
     private fun observeContainersCollapse() {
@@ -98,6 +109,19 @@ class PurchaseFragment : Fragment() {
         }
     }
 
+    override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+        v?.performClick()
+        when (v?.id) {
+            viewBinding.atvProductBrand.id -> {
+                viewBinding.atvProductBrand.showDropDown()
+            }
+            viewBinding.atvPurchaseMarket.id -> {
+                viewBinding.atvPurchaseMarket.showDropDown()
+            }
+        }
+        return false
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _viewBinding = null
@@ -112,5 +136,6 @@ class PurchaseFragment : Fragment() {
             }
         }
     }
+
 
 }
