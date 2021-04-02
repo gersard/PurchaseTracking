@@ -10,13 +10,19 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
 import cl.gersard.shoppingtracking.R
+import cl.gersard.shoppingtracking.core.DateFormats
+import cl.gersard.shoppingtracking.core.extension.format
 import cl.gersard.shoppingtracking.core.extension.gone
 import cl.gersard.shoppingtracking.core.extension.visible
 import cl.gersard.shoppingtracking.databinding.PurchaseFragmentBinding
 import cl.gersard.shoppingtracking.domain.product.Product
 import cl.gersard.shoppingtracking.domain.product.ProductState
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
+import java.time.*
+import java.time.format.DateTimeFormatter
 
 @AndroidEntryPoint
 class PurchaseFragment : Fragment(), View.OnTouchListener {
@@ -45,9 +51,12 @@ class PurchaseFragment : Fragment(), View.OnTouchListener {
         viewModel.fetchMarkets()
         viewModel.searchProduct(arguments?.getString(BARCODE_PRODUCT, "")!!)
 
+        viewBinding.etPurchaseDate.setText(LocalDateTime.now().format(DateFormats.PURCHASE_FORM))
+
         viewBinding.ibActionProductInfo.setOnClickListener { viewModel.collapseContainerProductInfo() }
         viewBinding.atvProductBrand.setOnTouchListener(this)
         viewBinding.atvPurchaseMarket.setOnTouchListener(this)
+        viewBinding.etPurchaseDate.setOnTouchListener(this)
     }
 
     private fun observeMarkets() {
@@ -122,8 +131,9 @@ class PurchaseFragment : Fragment(), View.OnTouchListener {
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouch(v: View?, event: MotionEvent?): Boolean {
-        v?.performClick()
+        if (event?.action != MotionEvent.ACTION_UP) return true
         when (v?.id) {
             viewBinding.atvProductBrand.id -> {
                 viewBinding.atvProductBrand.showDropDown()
@@ -131,8 +141,25 @@ class PurchaseFragment : Fragment(), View.OnTouchListener {
             viewBinding.atvPurchaseMarket.id -> {
                 viewBinding.atvPurchaseMarket.showDropDown()
             }
+            viewBinding.etPurchaseDate.id -> showDatePicker()
         }
         return false
+    }
+
+    private fun showDatePicker() {
+        val datePicker = MaterialDatePicker.Builder.datePicker()
+            .setTitleText(getString(R.string.hint_purchase_date))
+            .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+            .setInputMode(MaterialDatePicker.INPUT_MODE_CALENDAR)
+            .build()
+
+        datePicker.show(requireActivity().supportFragmentManager, "")
+
+        datePicker.addOnPositiveButtonClickListener {
+            val offsetDateTime = OffsetDateTime.ofInstant(Instant.ofEpochMilli(it), ZoneId.systemDefault())
+                .withOffsetSameInstant(ZoneOffset.UTC)
+            viewBinding.etPurchaseDate.setText(offsetDateTime.format(DateFormats.PURCHASE_FORM))
+        }
     }
 
     override fun onDestroyView() {
