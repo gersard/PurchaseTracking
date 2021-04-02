@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 //            brandUseCase.insertBrand("Ideal")
 //            brandUseCase.insertBrand("Surlat")
 //            brandUseCase.insertBrand("Cachantún")
-//            brandUseCase.insertBrand("PC Factory")
+//            brandUseCase.insertBrand("Samsung")
 //
 //            // TEST MARKETS
 //            marketUseCase.insertMarket("Tottus")

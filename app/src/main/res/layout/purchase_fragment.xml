@@ -55,9 +55,9 @@
                 style="@style/EditText_form"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_edit_text_form"
+                android:completionThreshold="1"
                 android:hint="@string/hint_product_brand"
                 android:inputType="textCapSentences"
-                android:completionThreshold="1"
                 android:popupBackground="@color/background_2"
                 android:textColorHint="@color/hint_edittext_form" />
 
@@ -135,6 +135,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_edit_text_form"
                 android:layout_marginTop="@dimen/margin_top_et_form"
+                android:buttonTint="@color/text_color_primary"
                 android:hint="@string/hint_product_brand"
                 android:text="@string/title_purchase_had_discount"
                 android:textColor="@color/text_color_primary" />
@@ -144,8 +145,10 @@
                 style="@style/EditText_form"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_edit_text_form"
+                android:completionThreshold="1"
                 android:hint="@string/hint_purchase_market"
                 android:inputType="textCapSentences"
+                android:popupBackground="@color/background_2"
                 android:textColorHint="@color/hint_edittext_form" />
 
             <EditText
