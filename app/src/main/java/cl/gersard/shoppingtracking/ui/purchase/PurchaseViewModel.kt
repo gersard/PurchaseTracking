@@ -14,8 +14,12 @@ import javax.inject.Inject
 @HiltViewModel
 class PurchaseViewModel @Inject constructor(private val productUseCase: ProductUseCase) : ViewModel() {
 
+
     private var _productState: MutableLiveData<ProductState<Product>> = MutableLiveData()
     val productState get() = _productState
+
+    private var _containerProductCollapseState: MutableLiveData<Boolean> = MutableLiveData()
+    val containerProductCollapseState get() = _containerProductCollapseState
 
     fun searchProduct(barcodeProduct: String) {
         viewModelScope.launch {
@@ -23,5 +27,8 @@ class PurchaseViewModel @Inject constructor(private val productUseCase: ProductU
         }
     }
 
+    fun collapseContainerProductInfo() {
+        _containerProductCollapseState.value = !(_containerProductCollapseState.value ?: false)
+    }
 
 }
