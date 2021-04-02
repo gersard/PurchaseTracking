@@ -13,4 +13,8 @@ class MarketUseCaseImpl @Inject constructor(private val repository: MarketReposi
             throw Exception("Name must not be empty")
         }
     }
+
+    override suspend fun getMarkets(): List<Market> {
+        return repository.getAllMarkets()
+    }
 }

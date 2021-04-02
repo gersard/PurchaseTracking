@@ -5,10 +5,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import cl.gersard.shoppingtracking.domain.brand.Brand
 import cl.gersard.shoppingtracking.domain.brand.BrandUseCase
+import cl.gersard.shoppingtracking.domain.market.Market
+import cl.gersard.shoppingtracking.domain.market.MarketUseCase
 import cl.gersard.shoppingtracking.domain.product.Product
 import cl.gersard.shoppingtracking.domain.product.ProductState
 import cl.gersard.shoppingtracking.domain.product.ProductUseCase
-import dagger.hilt.android.HiltAndroidApp
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -16,16 +17,23 @@ import javax.inject.Inject
 @HiltViewModel
 class PurchaseViewModel @Inject constructor(
     private val productUseCase: ProductUseCase,
-    private val brandUseCase: BrandUseCase
+    private val brandUseCase: BrandUseCase,
+    private val marketUseCase: MarketUseCase
 ) : ViewModel() {
 
+    // PRODUCT
     private var _productState: MutableLiveData<ProductState<Product>> = MutableLiveData()
     val productState get() = _productState
 
-
+    // LIST OF BRANDS
     private var _brandsState: MutableLiveData<List<Brand>> = MutableLiveData()
     val brandsState get() = _brandsState
 
+    // LIST OF MARKETS
+    private var _marketsState: MutableLiveData<List<Market>> = MutableLiveData()
+    val marketsState get() = _marketsState
+
+    // STATE OF CONTAINER PRODUCT INFO
     private var _containerProductCollapseState: MutableLiveData<Boolean> = MutableLiveData()
     val containerProductCollapseState get() = _containerProductCollapseState
 
@@ -38,6 +46,12 @@ class PurchaseViewModel @Inject constructor(
     fun fetchBrands() {
         viewModelScope.launch {
             _brandsState.value = brandUseCase.getBrands()
+        }
+    }
+
+    fun fetchMarkets() {
+        viewModelScope.launch {
+            _marketsState.value = marketUseCase.getMarkets()
         }
     }
 

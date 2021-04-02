@@ -1,5 +1,6 @@
 package cl.gersard.shoppingtracking.ui.purchase
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -32,21 +33,33 @@ class PurchaseFragment : Fragment(), View.OnTouchListener {
         return viewBinding.root
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observeBrands()
+        observeMarkets()
         observeProductState()
         observeContainersCollapse()
+
         viewModel.fetchBrands()
+        viewModel.fetchMarkets()
         viewModel.searchProduct(arguments?.getString(BARCODE_PRODUCT, "")!!)
 
         viewBinding.ibActionProductInfo.setOnClickListener { viewModel.collapseContainerProductInfo() }
         viewBinding.atvProductBrand.setOnTouchListener(this)
+        viewBinding.atvPurchaseMarket.setOnTouchListener(this)
+    }
+
+    private fun observeMarkets() {
+        viewModel.marketsState.observe(viewLifecycleOwner, { markets ->
+            val marketsName = markets.map { it.name }
+            val adapter = ArrayAdapter(requireContext(), R.layout.row_text_simple, marketsName)
+            viewBinding.atvPurchaseMarket.setAdapter(adapter)
+        })
     }
 
     private fun observeBrands() {
         viewModel.brandsState.observe(viewLifecycleOwner, { brands ->
-
             val brandsName = brands.map { it.name }
             val adapter = ArrayAdapter(requireContext(), R.layout.row_text_simple, brandsName)
             viewBinding.atvProductBrand.setAdapter(adapter)
