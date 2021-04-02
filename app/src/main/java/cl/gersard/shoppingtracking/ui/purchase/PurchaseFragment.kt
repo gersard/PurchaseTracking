@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import cl.gersard.shoppingtracking.R
 import cl.gersard.shoppingtracking.databinding.PurchaseFragmentBinding
+import cl.gersard.shoppingtracking.domain.product.Product
 import cl.gersard.shoppingtracking.domain.product.ProductState
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,9 +42,19 @@ class PurchaseFragment : Fragment() {
                 ProductState.Empty -> Snackbar.make(viewBinding.root, "Producto no encontrado, rellena sus datos para crearlo", Snackbar.LENGTH_LONG)
                     .show()
                 is ProductState.Error -> TODO()
-                is ProductState.Success -> Toast.makeText(requireContext(), "Producto: ${productState.data}", Toast.LENGTH_LONG).show()
+                is ProductState.Success -> loadProductInfo(productState.data)
             }
         })
+    }
+
+    private fun loadProductInfo(product: Product) {
+        with(viewBinding) {
+            etProductName.setText(product.name)
+            etProductDescription.setText(product.description)
+            atvProductBrand.setText(product.brand.name,false)
+            etProductBarcode.setText(product.barcode)
+            etProductNote.setText(product.name)
+        }
     }
 
     override fun onDestroyView() {
