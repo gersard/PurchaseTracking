@@ -120,7 +120,7 @@
                 android:layout_height="@dimen/height_edit_text_form"
                 android:layout_marginTop="0dp"
                 android:hint="@string/hint_purchase_total"
-                android:inputType="textCapSentences" />
+                android:inputType="number" />
 
             <EditText
                 android:id="@+id/et_purchase_quantity"
@@ -128,7 +128,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_edit_text_form"
                 android:hint="@string/hint_purchase_quantity"
-                android:inputType="textCapSentences" />
+                android:inputType="number" />
 
             <CheckBox
                 android:id="@+id/cb_purchase_had_discount"
