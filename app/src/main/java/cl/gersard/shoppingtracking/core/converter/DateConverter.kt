@@ -1,20 +1,17 @@
 package cl.gersard.shoppingtracking.core.converter
 
 import androidx.room.TypeConverter
-import java.time.Instant
-import java.time.LocalDateTime
-import java.time.ZoneId
-import java.time.ZoneOffset
+import java.time.*
 
 class DateConverter {
 
     @TypeConverter
-    fun fromTimestamp(timestamp: Long): LocalDateTime {
-        return LocalDateTime.ofInstant(Instant.ofEpochMilli(timestamp), ZoneId.systemDefault())
+    fun fromTimestamp(timestamp: Long): LocalDate {
+        return Instant.ofEpochMilli(timestamp).atZone(ZoneId.systemDefault()).toLocalDate()
     }
 
     @TypeConverter
-    fun dateToTimestamp(date: LocalDateTime): Long {
-        return date.toInstant(ZoneOffset.UTC).toEpochMilli()
+    fun dateToTimestamp(date: LocalDate): Long {
+        return date.atStartOfDay(ZoneId.systemDefault()).toEpochSecond()
     }
 }

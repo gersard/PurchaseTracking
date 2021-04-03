@@ -8,7 +8,6 @@ import cl.gersard.shoppingtracking.domain.brand.BrandUseCase
 import cl.gersard.shoppingtracking.domain.market.Market
 import cl.gersard.shoppingtracking.domain.market.MarketUseCase
 import cl.gersard.shoppingtracking.domain.product.Product
-import cl.gersard.shoppingtracking.domain.product.ProductInsert
 import cl.gersard.shoppingtracking.domain.product.ProductState
 import cl.gersard.shoppingtracking.domain.product.ProductUseCase
 import cl.gersard.shoppingtracking.domain.purchase.PurchaseSaveState
@@ -16,6 +15,7 @@ import cl.gersard.shoppingtracking.domain.purchase.PurchaseUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.time.LocalDate
 import javax.inject.Inject
 
 @HiltViewModel
@@ -64,7 +64,10 @@ class PurchaseViewModel @Inject constructor(
         }
     }
 
-    fun savePurchaseProduct(brandName: String, marketName: String, prodName: String, prodDesc: String, prodBarcode: String, prodNote: String) {
+    fun savePurchaseProduct(
+        brandName: String, marketName: String, prodName: String, prodDesc: String, prodBarcode: String, prodNote: String,
+        total: Int, quantity: Int, date: LocalDate, hasDiscount: Boolean, purchaseNote: String
+    ) {
         viewModelScope.launch {
             _purchasesSaveState.value = PurchaseSaveState.Loading(true)
             // Brand
@@ -72,9 +75,9 @@ class PurchaseViewModel @Inject constructor(
             val brandId = brand?.id ?: brandUseCase.insertBrand(brandName)
 
             // Market
-//            if (currentMarketId == 0L) {
-//                currentMarketId = marketUseCase.insertMarket(marketName)
-//            }
+            val market = marketUseCase.getMarket(marketName)
+            val marketId = market?.id ?: marketUseCase.insertMarket(marketName)
+
             // Product
             val productId = if (productState.value != null && productState.value is ProductState.Success) {
                 val product = (productState.value as ProductState.Success).data
@@ -82,6 +85,12 @@ class PurchaseViewModel @Inject constructor(
             } else {
                 productUseCase.insertProduct(0, prodName, prodDesc, prodBarcode, brandId, prodNote)
             }
+
+            // PURCHASE
+            val purchaseId = purchaseUseCase.insertPurchase(total / quantity, quantity, date, marketId, hasDiscount, purchaseNote)
+
+            // Relation Product - Purchase
+            productUseCase.insertProductPurchase(productId, purchaseId)
 
             delay(1000)
             _purchasesSaveState.value = PurchaseSaveState.Loading(false)

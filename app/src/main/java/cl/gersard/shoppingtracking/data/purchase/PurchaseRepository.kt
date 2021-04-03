@@ -1,9 +1,10 @@
 package cl.gersard.shoppingtracking.data.purchase
 
-import cl.gersard.shoppingtracking.domain.purchase.Purchase
+import cl.gersard.shoppingtracking.domain.purchase.PurchaseInsert
+
 
 interface PurchaseRepository {
 
-    suspend fun insertPurchase(purchase: Purchase): Boolean
+    suspend fun insertPurchase(purchase: PurchaseInsert): Long
 
 }

@@ -8,4 +8,5 @@ class MarketDataSourceImpl @Inject constructor(private val marketDao: MarketDao)
     override suspend fun insertMarket(marketEntity: MarketEntity): Long = marketDao.insertMarket(marketEntity)
 
     override suspend fun getAllMarkets(): List<MarketEntity> = marketDao.getAllMarkets()
+    override suspend fun getMarket(marketName: String): MarketEntity? = marketDao.getMarket(marketName)
 }

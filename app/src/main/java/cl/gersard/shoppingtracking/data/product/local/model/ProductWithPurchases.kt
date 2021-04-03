@@ -4,8 +4,8 @@ import androidx.room.Embedded
 import androidx.room.Junction
 import androidx.room.Relation
 import cl.gersard.shoppingtracking.data.brand.BrandEntity
-import cl.gersard.shoppingtracking.data.purchase.PurchaseDetailEntity
-import cl.gersard.shoppingtracking.data.purchase.PurchaseEntity
+import cl.gersard.shoppingtracking.data.purchase.local.PurchaseDetailEntity
+import cl.gersard.shoppingtracking.data.purchase.local.PurchaseEntity
 
 
 data class ProductWithPurchases(

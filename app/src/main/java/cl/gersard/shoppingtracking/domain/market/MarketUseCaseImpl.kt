@@ -17,4 +17,8 @@ class MarketUseCaseImpl @Inject constructor(private val repository: MarketReposi
     override suspend fun getMarkets(): List<Market> {
         return repository.getAllMarkets()
     }
+
+    override suspend fun getMarket(marketName: String): Market? {
+        return repository.getMarket(marketName)
+    }
 }

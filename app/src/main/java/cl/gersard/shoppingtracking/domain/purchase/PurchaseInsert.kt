@@ -1,15 +1,13 @@
 package cl.gersard.shoppingtracking.domain.purchase
 
-import cl.gersard.shoppingtracking.domain.market.Market
 import java.time.LocalDate
-import java.time.LocalDateTime
 
-data class Purchase(
+data class PurchaseInsert(
     val id: Long,
     val price: Int,
     val quantity: Int,
     val date: LocalDate,
-    val market: Market,
+    val marketId: Long,
     val discount: Boolean,
     val note: String
 )

@@ -16,12 +16,11 @@ class ProductRepositoryImpl @Inject constructor(
         return productMapper.mapToProductDomain(dataSource.getAllProducts())
     }
 
-    override suspend fun insertProduct(product: ProductInsert): Boolean = try {
+    override suspend fun insertProduct(product: ProductInsert): Long = try {
         dataSource.insertProduct(productMapper.mapToProductEntity(product))
-        true
     } catch (e: Exception) {
         Timber.e(e)
-        false
+        -1
     }
 
     override suspend fun insertProductPurchase(idPurchase: Long, idProduct: Long): Boolean = try {

@@ -9,4 +9,5 @@ interface MarketDataSource {
 
     suspend fun getAllMarkets(): List<MarketEntity>
 
+    suspend fun getMarket(marketName: String): MarketEntity?
 }

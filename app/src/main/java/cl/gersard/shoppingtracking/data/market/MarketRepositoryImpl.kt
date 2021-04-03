@@ -21,4 +21,13 @@ class MarketRepositoryImpl @Inject constructor(private val dataSource: MarketDat
     } catch (e: Exception) {
         emptyList()
     }
+
+    override suspend fun getMarket(marketName: String): Market? {
+        val market = dataSource.getMarket(marketName)
+        return if (market != null) {
+            marketMapper.mapToMarketDomain(market)
+        } else {
+            null
+        }
+    }
 }

@@ -15,4 +15,7 @@ interface MarketDao {
     @Query("SELECT * FROM Market")
     suspend fun getAllMarkets(): List<MarketEntity>
 
+    @Query("SELECT * From Market WHERE name = :marketName")
+    suspend fun getMarket(marketName: String): MarketEntity?
+
 }

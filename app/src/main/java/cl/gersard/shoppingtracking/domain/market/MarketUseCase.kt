@@ -6,4 +6,6 @@ interface MarketUseCase {
 
     suspend fun getMarkets(): List<Market>
 
+    suspend fun getMarket(marketName: String): Market?
+
 }

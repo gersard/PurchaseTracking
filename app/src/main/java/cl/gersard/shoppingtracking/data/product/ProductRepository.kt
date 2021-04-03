@@ -7,7 +7,7 @@ interface ProductRepository {
 
     suspend fun getProducts(): List<Product>
 
-    suspend fun insertProduct(product: ProductInsert): Boolean
+    suspend fun insertProduct(product: ProductInsert): Long
 
     suspend fun insertProductPurchase(idPurchase: Long, idProduct: Long): Boolean
 

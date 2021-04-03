@@ -7,5 +7,6 @@ interface MarketRepository {
     suspend fun insertBrand(market: Market): Long
 
     suspend fun getAllMarkets(): List<Market>
+    suspend fun getMarket(marketName: String): Market?
 
 }

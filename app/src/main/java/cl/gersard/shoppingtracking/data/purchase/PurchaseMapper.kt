@@ -1,7 +1,10 @@
 package cl.gersard.shoppingtracking.data.purchase
 
 import cl.gersard.shoppingtracking.data.market.MarketMapper
+import cl.gersard.shoppingtracking.data.purchase.local.PurchaseDetailEntity
+import cl.gersard.shoppingtracking.data.purchase.local.PurchaseEntity
 import cl.gersard.shoppingtracking.domain.purchase.Purchase
+import cl.gersard.shoppingtracking.domain.purchase.PurchaseInsert
 import javax.inject.Inject
 
 class PurchaseMapper @Inject constructor(private val marketMapper: MarketMapper) {
@@ -28,4 +31,13 @@ class PurchaseMapper @Inject constructor(private val marketMapper: MarketMapper)
         purchase.market.id
     )
 
+    fun mapToPurchaseEntity(purchase: PurchaseInsert) = PurchaseEntity(
+        purchase.id,
+        purchase.price,
+        purchase.quantity,
+        purchase.date,
+        purchase.discount,
+        purchase.note,
+        purchase.marketId
+    )
 }

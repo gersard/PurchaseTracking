@@ -1,7 +1,6 @@
 package cl.gersard.shoppingtracking.data.purchase.local
 
 import androidx.room.*
-import cl.gersard.shoppingtracking.data.purchase.PurchaseEntity
 
 @Dao
 interface PurchaseDao {

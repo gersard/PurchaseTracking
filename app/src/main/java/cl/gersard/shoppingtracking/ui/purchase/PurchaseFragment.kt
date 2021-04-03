@@ -7,23 +7,19 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
 import cl.gersard.shoppingtracking.R
-import cl.gersard.shoppingtracking.core.DateFormats
+import cl.gersard.shoppingtracking.core.DateUtils
 import cl.gersard.shoppingtracking.core.SimpleItemInfo
 import cl.gersard.shoppingtracking.core.extension.*
 import cl.gersard.shoppingtracking.databinding.PurchaseFragmentBinding
-import cl.gersard.shoppingtracking.domain.brand.Brand
 import cl.gersard.shoppingtracking.domain.product.Product
 import cl.gersard.shoppingtracking.domain.product.ProductState
 import cl.gersard.shoppingtracking.domain.purchase.PurchaseSaveState
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 import java.time.*
-import java.time.format.DateTimeFormatter
 
 @AndroidEntryPoint
 class PurchaseFragment : Fragment(), View.OnTouchListener, SimpleItemAdapter.SimpleItemListener {
@@ -54,7 +50,7 @@ class PurchaseFragment : Fragment(), View.OnTouchListener, SimpleItemAdapter.Sim
         val barcodeProduct = arguments?.getString(BARCODE_PRODUCT, "")!!
         viewModel.searchProduct(barcodeProduct)
 
-        viewBinding.etPurchaseDate.setText(LocalDateTime.now().format(DateFormats.PURCHASE_FORM))
+        viewBinding.etPurchaseDate.setText(LocalDateTime.now().format(DateUtils.FORMAT_PURCHASE_FORM))
         viewBinding.etProductBarcode.setText(barcodeProduct)
 
         viewBinding.ibActionProductInfo.setOnClickListener { viewModel.collapseContainerProductInfo() }
@@ -72,7 +68,12 @@ class PurchaseFragment : Fragment(), View.OnTouchListener, SimpleItemAdapter.Sim
                 etProductName.text(),
                 etProductDescription.text(),
                 etProductBarcode.text(),
-                etProductNote.text()
+                etProductNote.text(),
+                etPurchaseTotal.text().toInt(),
+                etPurchaseQuantity.text().toInt(),
+                DateUtils.parseDate(etPurchaseDate.text(), DateUtils.FORMAT_PURCHASE_FORM),
+                cbPurchaseHadDiscount.isChecked,
+                etPurchaseNote.text()
             )
         }
     }
@@ -200,7 +201,7 @@ class PurchaseFragment : Fragment(), View.OnTouchListener, SimpleItemAdapter.Sim
         datePicker.addOnPositiveButtonClickListener {
             val offsetDateTime = OffsetDateTime.ofInstant(Instant.ofEpochMilli(it), ZoneId.systemDefault())
                 .withOffsetSameInstant(ZoneOffset.UTC)
-            viewBinding.etPurchaseDate.setText(offsetDateTime.format(DateFormats.PURCHASE_FORM))
+            viewBinding.etPurchaseDate.setText(offsetDateTime.format(DateUtils.FORMAT_PURCHASE_FORM))
         }
     }
 

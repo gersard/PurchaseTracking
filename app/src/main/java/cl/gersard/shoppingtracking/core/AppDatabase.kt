@@ -11,7 +11,7 @@ import cl.gersard.shoppingtracking.data.market.local.MarketDao
 import cl.gersard.shoppingtracking.data.product.local.ProductDao
 import cl.gersard.shoppingtracking.data.product.local.model.ProductEntity
 import cl.gersard.shoppingtracking.data.product.local.model.ProductPurchaseCrossRef
-import cl.gersard.shoppingtracking.data.purchase.PurchaseEntity
+import cl.gersard.shoppingtracking.data.purchase.local.PurchaseEntity
 import cl.gersard.shoppingtracking.data.purchase.local.PurchaseDao
 
 @Database(
