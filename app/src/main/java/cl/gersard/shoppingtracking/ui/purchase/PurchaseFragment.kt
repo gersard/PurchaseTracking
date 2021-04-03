@@ -14,6 +14,7 @@ import cl.gersard.shoppingtracking.core.DateFormats
 import cl.gersard.shoppingtracking.core.SimpleItemInfo
 import cl.gersard.shoppingtracking.core.extension.format
 import cl.gersard.shoppingtracking.core.extension.gone
+import cl.gersard.shoppingtracking.core.extension.hideKeyboard
 import cl.gersard.shoppingtracking.core.extension.visible
 import cl.gersard.shoppingtracking.databinding.PurchaseFragmentBinding
 import cl.gersard.shoppingtracking.domain.product.Product
@@ -123,6 +124,8 @@ class PurchaseFragment : Fragment(), View.OnTouchListener, SimpleItemAdapter.Sim
 
     private fun collapseProductInfo() {
         with(viewBinding) {
+            requireActivity().hideKeyboard()
+
             // Hide the views, just show the name
             etProductDescription.gone(true)
             atvProductBrand.gone(true)
