@@ -17,6 +17,7 @@ import cl.gersard.shoppingtracking.core.extension.visible
 import cl.gersard.shoppingtracking.databinding.PurchaseFragmentBinding
 import cl.gersard.shoppingtracking.domain.product.Product
 import cl.gersard.shoppingtracking.domain.product.ProductState
+import cl.gersard.shoppingtracking.domain.purchase.PurchaseSaveState
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -45,18 +46,44 @@ class PurchaseFragment : Fragment(), View.OnTouchListener {
         observeBrands()
         observeMarkets()
         observeProductState()
+        observePurchaseState()
         observeContainersCollapse()
 
         viewModel.fetchBrands()
         viewModel.fetchMarkets()
-        viewModel.searchProduct(arguments?.getString(BARCODE_PRODUCT, "")!!)
+        val barcodeProduct = arguments?.getString(BARCODE_PRODUCT, "")!!
+        viewModel.searchProduct(barcodeProduct)
 
         viewBinding.etPurchaseDate.setText(LocalDateTime.now().format(DateFormats.PURCHASE_FORM))
+        viewBinding.etProductBarcode.setText(barcodeProduct)
 
         viewBinding.ibActionProductInfo.setOnClickListener { viewModel.collapseContainerProductInfo() }
+        viewBinding.btnSaveProductPurchase.setOnClickListener { viewModel.savePurchaseProduct() }
         viewBinding.atvProductBrand.setOnTouchListener(this)
         viewBinding.atvPurchaseMarket.setOnTouchListener(this)
         viewBinding.etPurchaseDate.setOnTouchListener(this)
+    }
+
+    private fun observePurchaseState() {
+        viewModel.purchasesSaveState.observe(viewLifecycleOwner, { purchaseState ->
+            when (purchaseState) {
+                is PurchaseSaveState.Error -> TODO()
+                is PurchaseSaveState.Loading -> manageProgress(purchaseState.isLoading)
+                PurchaseSaveState.Success -> TODO()
+            }
+        })
+    }
+
+    private fun manageProgress(isLoading: Boolean) {
+        with(viewBinding) {
+            if (isLoading) {
+                pbSavePurchase.visible(true)
+                btnSaveProductPurchase.gone(true)
+            } else {
+                pbSavePurchase.gone(true)
+                btnSaveProductPurchase.visible(true)
+            }
+        }
     }
 
     private fun observeMarkets() {

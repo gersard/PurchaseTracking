@@ -10,7 +10,9 @@ import cl.gersard.shoppingtracking.domain.market.MarketUseCase
 import cl.gersard.shoppingtracking.domain.product.Product
 import cl.gersard.shoppingtracking.domain.product.ProductState
 import cl.gersard.shoppingtracking.domain.product.ProductUseCase
+import cl.gersard.shoppingtracking.domain.purchase.PurchaseSaveState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -37,6 +39,10 @@ class PurchaseViewModel @Inject constructor(
     private var _containerProductCollapseState: MutableLiveData<Boolean> = MutableLiveData()
     val containerProductCollapseState get() = _containerProductCollapseState
 
+    // STATE OF PURCHASE'S SAVE
+    private var _purchasesSaveState: MutableLiveData<PurchaseSaveState> = MutableLiveData()
+    val purchasesSaveState get() = _purchasesSaveState
+
     fun searchProduct(barcodeProduct: String) {
         viewModelScope.launch {
             productState.value = productUseCase.searchProduct(barcodeProduct)
@@ -55,8 +61,17 @@ class PurchaseViewModel @Inject constructor(
         }
     }
 
+    fun savePurchaseProduct() {
+        viewModelScope.launch {
+            _purchasesSaveState.value = PurchaseSaveState.Loading(true)
+            delay(1000)
+            _purchasesSaveState.value = PurchaseSaveState.Loading(false)
+        }
+    }
+
     fun collapseContainerProductInfo() {
         _containerProductCollapseState.value = !(_containerProductCollapseState.value ?: false)
     }
+
 
 }
