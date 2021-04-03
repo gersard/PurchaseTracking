@@ -6,9 +6,9 @@ import javax.inject.Inject
 
 class MarketUseCaseImpl @Inject constructor(private val repository: MarketRepository) : MarketUseCase {
 
-    override suspend fun insertMarket(name: String) {
+    override suspend fun insertMarket(name: String): Long {
         if (name.isNotEmpty()) {
-            repository.insertBrand(Market(0, name.capitalize(Locale.ROOT)))
+            return repository.insertBrand(Market(0, name.capitalize(Locale.ROOT)))
         } else {
             throw Exception("Name must not be empty")
         }

@@ -4,7 +4,7 @@ interface ProductUseCase {
 
     suspend fun getProductsWithPurchases(): List<Product>
 
-    suspend fun insertProduct(product: Product)
+    suspend fun insertProduct(id: Long,name: String, description: String, barcode: String, brandId: Long, note: String)
 
     suspend fun insertProductPurchase(idProduct: Long, idPurchase: Long)
 

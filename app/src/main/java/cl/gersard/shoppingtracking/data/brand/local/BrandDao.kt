@@ -15,4 +15,10 @@ interface BrandDao {
     @Query("SELECT * FROM Brand")
     suspend fun getAllBrands(): List<BrandEntity>
 
+    @Query("SELECT * FROM Brand WHERE brandId = :idBrand")
+    suspend fun getBrand(idBrand: Long): BrandEntity?
+
+    @Query("SELECT * FROM Brand WHERE name = :brandName")
+    suspend fun getBrand(brandName: String): BrandEntity?
+
 }

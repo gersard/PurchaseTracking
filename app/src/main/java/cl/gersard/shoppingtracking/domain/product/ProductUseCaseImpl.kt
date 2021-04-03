@@ -10,7 +10,8 @@ class ProductUseCaseImpl @Inject constructor(private val repository: ProductRepo
         return repository.getProducts()
     }
 
-    override suspend fun insertProduct(product: Product) {
+    override suspend fun insertProduct(id: Long, name: String, description: String, barcode: String, brandId: Long, note: String) {
+        val product = ProductInsert(id, barcode, name, description, brandId, note)
         repository.insertProduct(product)
     }
 

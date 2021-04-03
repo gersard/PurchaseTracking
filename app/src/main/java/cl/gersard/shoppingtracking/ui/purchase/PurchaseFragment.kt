@@ -12,11 +12,9 @@ import androidx.fragment.app.viewModels
 import cl.gersard.shoppingtracking.R
 import cl.gersard.shoppingtracking.core.DateFormats
 import cl.gersard.shoppingtracking.core.SimpleItemInfo
-import cl.gersard.shoppingtracking.core.extension.format
-import cl.gersard.shoppingtracking.core.extension.gone
-import cl.gersard.shoppingtracking.core.extension.hideKeyboard
-import cl.gersard.shoppingtracking.core.extension.visible
+import cl.gersard.shoppingtracking.core.extension.*
 import cl.gersard.shoppingtracking.databinding.PurchaseFragmentBinding
+import cl.gersard.shoppingtracking.domain.brand.Brand
 import cl.gersard.shoppingtracking.domain.product.Product
 import cl.gersard.shoppingtracking.domain.product.ProductState
 import cl.gersard.shoppingtracking.domain.purchase.PurchaseSaveState
@@ -60,10 +58,23 @@ class PurchaseFragment : Fragment(), View.OnTouchListener, SimpleItemAdapter.Sim
         viewBinding.etProductBarcode.setText(barcodeProduct)
 
         viewBinding.ibActionProductInfo.setOnClickListener { viewModel.collapseContainerProductInfo() }
-        viewBinding.btnSaveProductPurchase.setOnClickListener { viewModel.savePurchaseProduct() }
+        viewBinding.btnSaveProductPurchase.setOnClickListener { savePurchase() }
         viewBinding.atvProductBrand.setOnTouchListener(this)
         viewBinding.atvPurchaseMarket.setOnTouchListener(this)
         viewBinding.etPurchaseDate.setOnTouchListener(this)
+    }
+
+    private fun savePurchase() {
+        with(viewBinding) {
+            viewModel.savePurchaseProduct(
+                atvProductBrand.text(),
+                atvPurchaseMarket.text(),
+                etProductName.text(),
+                etProductDescription.text(),
+                etProductBarcode.text(),
+                etProductNote.text()
+            )
+        }
     }
 
     private fun observePurchaseState() {

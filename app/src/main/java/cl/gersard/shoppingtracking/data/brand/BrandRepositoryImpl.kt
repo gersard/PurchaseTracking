@@ -7,13 +7,12 @@ import javax.inject.Inject
 
 class BrandRepositoryImpl @Inject constructor(private val dataSource: BrandDataSource, private val brandMapper: BrandMapper) : BrandRepository {
 
-    override suspend fun insertBrand(brand: Brand): Boolean {
+    override suspend fun insertBrand(brand: Brand): Long {
         return try {
             dataSource.insertBrand(brandMapper.mapToBrandEntity(brand))
-            true
         } catch (e: Exception) {
             Timber.e(e)
-            false
+            -1
         }
     }
 
@@ -22,6 +21,15 @@ class BrandRepositoryImpl @Inject constructor(private val dataSource: BrandDataS
             brandMapper.mapToBrandDomain(dataSource.getAllBrands())
         } catch (e: Exception) {
             emptyList()
+        }
+    }
+
+    override suspend fun getBrand(brandName: String): Brand? {
+        val brandEntity = dataSource.getBrand(brandName)
+        return if (brandEntity != null) {
+            brandMapper.mapToBrandDomain(brandEntity)
+        } else {
+            null
         }
     }
 }

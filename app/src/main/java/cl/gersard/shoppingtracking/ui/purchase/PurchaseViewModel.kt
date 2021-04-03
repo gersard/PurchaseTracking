@@ -8,6 +8,7 @@ import cl.gersard.shoppingtracking.domain.brand.BrandUseCase
 import cl.gersard.shoppingtracking.domain.market.Market
 import cl.gersard.shoppingtracking.domain.market.MarketUseCase
 import cl.gersard.shoppingtracking.domain.product.Product
+import cl.gersard.shoppingtracking.domain.product.ProductInsert
 import cl.gersard.shoppingtracking.domain.product.ProductState
 import cl.gersard.shoppingtracking.domain.product.ProductUseCase
 import cl.gersard.shoppingtracking.domain.purchase.PurchaseSaveState
@@ -63,9 +64,25 @@ class PurchaseViewModel @Inject constructor(
         }
     }
 
-    fun savePurchaseProduct() {
+    fun savePurchaseProduct(brandName: String, marketName: String, prodName: String, prodDesc: String, prodBarcode: String, prodNote: String) {
         viewModelScope.launch {
             _purchasesSaveState.value = PurchaseSaveState.Loading(true)
+            // Brand
+            val brand = brandUseCase.getBrand(brandName)
+            val brandId = brand?.id ?: brandUseCase.insertBrand(brandName)
+
+            // Market
+//            if (currentMarketId == 0L) {
+//                currentMarketId = marketUseCase.insertMarket(marketName)
+//            }
+            // Product
+            val productId = if (productState.value != null && productState.value is ProductState.Success) {
+                val product = (productState.value as ProductState.Success).data
+                productUseCase.insertProduct(product.id, product.name, product.description, product.barcode, brandId, product.note)
+            } else {
+                productUseCase.insertProduct(0, prodName, prodDesc, prodBarcode, brandId, prodNote)
+            }
+
             delay(1000)
             _purchasesSaveState.value = PurchaseSaveState.Loading(false)
         }

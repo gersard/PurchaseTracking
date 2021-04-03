@@ -15,6 +15,9 @@ class SimpleItemAdapter(context: Context, resource: Int, objects: List<SimpleIte
 
     private var originalListObjects: List<SimpleItemInfo> = objects
     private var suggestedListObjects: MutableList<SimpleItemInfo> = objects.toMutableList()
+    private var currentItemSelected: SimpleItemInfo? = null
+
+    fun getCurrentItemSelected() = currentItemSelected
 
     override fun getCount(): Int {
         return suggestedListObjects.size
@@ -29,7 +32,10 @@ class SimpleItemAdapter(context: Context, resource: Int, objects: List<SimpleIte
         if (itemView == null) itemView = LayoutInflater.from(parent.context).inflate(R.layout.row_text_simple, parent, false)
         val simpleItem = suggestedListObjects[position]
         (itemView as TextView).text = simpleItem.name()
-        itemView.setOnClickListener { listener.onSimpleItemClick(simpleItem.type(), simpleItem) }
+        itemView.setOnClickListener {
+            listener.onSimpleItemClick(simpleItem.type(), simpleItem)
+            currentItemSelected = simpleItem
+        }
         return itemView
     }
 

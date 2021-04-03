@@ -8,4 +8,5 @@ interface BrandDataSource {
 
     suspend fun getAllBrands(): List<BrandEntity>
 
+    suspend fun getBrand(brandName: String): BrandEntity?
 }

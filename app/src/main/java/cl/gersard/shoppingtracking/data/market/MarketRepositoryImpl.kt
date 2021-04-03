@@ -7,13 +7,12 @@ import javax.inject.Inject
 
 class MarketRepositoryImpl @Inject constructor(private val dataSource: MarketDataSource, private val marketMapper: MarketMapper) : MarketRepository {
 
-    override suspend fun insertBrand(market: Market): Boolean {
+    override suspend fun insertBrand(market: Market): Long {
         return try {
             dataSource.insertMarket(marketMapper.mapToMarketEntity(market))
-            true
         } catch (e: Exception) {
             Timber.e(e)
-            false
+            -1
         }
     }
 
