@@ -90,8 +90,7 @@ class PurchaseFragment : Fragment(), View.OnTouchListener, SimpleItemAdapter.Sim
 
     private fun observeMarkets() {
         viewModel.marketsState.observe(viewLifecycleOwner, { markets ->
-            val marketsName = markets.map { it.name }
-            val adapter = ArrayAdapter(requireContext(), R.layout.row_text_simple, marketsName)
+            val adapter = SimpleItemAdapter(requireContext(), R.layout.row_text_simple, markets, this)
             viewBinding.atvPurchaseMarket.setAdapter(adapter)
         })
     }
