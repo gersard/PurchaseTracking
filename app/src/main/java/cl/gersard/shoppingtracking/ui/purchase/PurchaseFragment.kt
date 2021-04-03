@@ -160,7 +160,6 @@ class PurchaseFragment : Fragment(), View.OnTouchListener {
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouch(v: View?, event: MotionEvent?): Boolean {
-        if (event?.action != MotionEvent.ACTION_UP) return true
         when (v?.id) {
             viewBinding.atvProductBrand.id -> {
                 viewBinding.atvProductBrand.showDropDown()
@@ -168,7 +167,10 @@ class PurchaseFragment : Fragment(), View.OnTouchListener {
             viewBinding.atvPurchaseMarket.id -> {
                 viewBinding.atvPurchaseMarket.showDropDown()
             }
-            viewBinding.etPurchaseDate.id -> showDatePicker()
+            viewBinding.etPurchaseDate.id -> {
+                if (event?.action != MotionEvent.ACTION_UP) return true
+                showDatePicker()
+            }
         }
         return false
     }
