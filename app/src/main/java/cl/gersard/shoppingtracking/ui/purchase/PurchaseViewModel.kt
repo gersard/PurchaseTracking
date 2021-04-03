@@ -11,6 +11,7 @@ import cl.gersard.shoppingtracking.domain.product.Product
 import cl.gersard.shoppingtracking.domain.product.ProductState
 import cl.gersard.shoppingtracking.domain.product.ProductUseCase
 import cl.gersard.shoppingtracking.domain.purchase.PurchaseSaveState
+import cl.gersard.shoppingtracking.domain.purchase.PurchaseUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -20,7 +21,8 @@ import javax.inject.Inject
 class PurchaseViewModel @Inject constructor(
     private val productUseCase: ProductUseCase,
     private val brandUseCase: BrandUseCase,
-    private val marketUseCase: MarketUseCase
+    private val marketUseCase: MarketUseCase,
+    private val purchaseUseCase: PurchaseUseCase
 ) : ViewModel() {
 
     // PRODUCT

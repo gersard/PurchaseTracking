@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
 import cl.gersard.shoppingtracking.R
 import cl.gersard.shoppingtracking.core.DateFormats
+import cl.gersard.shoppingtracking.core.SimpleItemInfo
 import cl.gersard.shoppingtracking.core.extension.format
 import cl.gersard.shoppingtracking.core.extension.gone
 import cl.gersard.shoppingtracking.core.extension.visible
@@ -26,7 +27,7 @@ import java.time.*
 import java.time.format.DateTimeFormatter
 
 @AndroidEntryPoint
-class PurchaseFragment : Fragment(), View.OnTouchListener {
+class PurchaseFragment : Fragment(), View.OnTouchListener, SimpleItemAdapter.SimpleItemListener {
 
     private val viewModel by viewModels<PurchaseViewModel>()
     private var _viewBinding: PurchaseFragmentBinding? = null
@@ -96,8 +97,7 @@ class PurchaseFragment : Fragment(), View.OnTouchListener {
 
     private fun observeBrands() {
         viewModel.brandsState.observe(viewLifecycleOwner, { brands ->
-            val brandsName = brands.map { it.name }
-            val adapter = ArrayAdapter(requireContext(), R.layout.row_text_simple, brandsName)
+            val adapter = SimpleItemAdapter(requireContext(), R.layout.row_text_simple, brands, this)
             viewBinding.atvProductBrand.setAdapter(adapter)
         })
     }
@@ -188,6 +188,19 @@ class PurchaseFragment : Fragment(), View.OnTouchListener {
             val offsetDateTime = OffsetDateTime.ofInstant(Instant.ofEpochMilli(it), ZoneId.systemDefault())
                 .withOffsetSameInstant(ZoneOffset.UTC)
             viewBinding.etPurchaseDate.setText(offsetDateTime.format(DateFormats.PURCHASE_FORM))
+        }
+    }
+
+    override fun onSimpleItemClick(type: Int, simpleItemInfo: SimpleItemInfo) {
+        when (type) {
+            SimpleItemInfo.TYPES.BRAND -> {
+                viewBinding.atvProductBrand.setText(simpleItemInfo.name(), false)
+                viewBinding.atvProductBrand.dismissDropDown()
+            }
+            SimpleItemInfo.TYPES.MARKET -> {
+                viewBinding.atvPurchaseMarket.setText(simpleItemInfo.name(), false)
+                viewBinding.atvPurchaseMarket.dismissDropDown()
+            }
         }
     }
 
