@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
 
     fun changeFragment(fragment: Fragment, addToBackStack: Boolean) {
         val transaction = supportFragmentManager.beginTransaction()
-            .replace(R.id.host_fragment, fragment)
+            .replace(R.id.host_fragment, fragment,fragment::class.java.simpleName)
         if (addToBackStack) transaction.addToBackStack(null)
         transaction.commit()
     }

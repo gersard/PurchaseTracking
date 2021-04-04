@@ -42,6 +42,7 @@ class PurchaseFragment : Fragment(), View.OnTouchListener, SimpleItemAdapter.Sim
     @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Timber.d("On View Created")
         observeBrands()
         observeMarkets()
         observeProductState()
@@ -167,8 +168,11 @@ class PurchaseFragment : Fragment(), View.OnTouchListener, SimpleItemAdapter.Sim
     private fun observeProductState() {
         viewModel.productState.observe(viewLifecycleOwner, { productState ->
             when (productState) {
-                ProductState.Empty -> Snackbar.make(viewBinding.root, "Producto no encontrado, rellena sus datos para crearlo", Snackbar.LENGTH_LONG)
-                    .show()
+                ProductState.Empty -> {
+                    Timber.d("Product empty")
+                    Snackbar.make(viewBinding.root, "Producto no encontrado, rellena sus datos para crearlo", Snackbar.LENGTH_LONG)
+                        .show()
+                }
                 is ProductState.Error -> TODO()
                 is ProductState.Success -> {
                     loadProductInfo(productState.data)
