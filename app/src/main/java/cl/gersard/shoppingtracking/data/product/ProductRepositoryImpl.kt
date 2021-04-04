@@ -23,7 +23,7 @@ class ProductRepositoryImpl @Inject constructor(
         -1
     }
 
-    override suspend fun insertProductPurchase(idPurchase: Long, idProduct: Long): Boolean = try {
+    override suspend fun insertProductPurchase(idProduct: Long, idPurchase: Long): Boolean = try {
         dataSource.insertProductPurchase(ProductPurchaseCrossRef(idProduct, idPurchase))
         true
     } catch (e: Exception) {
