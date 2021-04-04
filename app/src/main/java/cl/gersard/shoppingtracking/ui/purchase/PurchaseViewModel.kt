@@ -15,6 +15,7 @@ import cl.gersard.shoppingtracking.domain.purchase.PurchaseUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import java.time.LocalDate
 import javax.inject.Inject
 
@@ -97,9 +98,9 @@ class PurchaseViewModel @Inject constructor(
 
             // Relation Product - Purchase
             productUseCase.insertProductPurchase(productId, purchaseId)
-
-            delay(1000)
+            Timber.d("Product ID: $productId - Purchase ID: $purchaseId")
             _purchasesSaveState.value = PurchaseSaveState.Loading(false)
+            _purchasesSaveState.value = PurchaseSaveState.Success
         }
     }
 
@@ -116,8 +117,16 @@ class PurchaseViewModel @Inject constructor(
             _errorState.value = "The purchases total is required"
             return true
         }
+        if (total <= 0) {
+            _errorState.value = "Total must be major than zero"
+            return true
+        }
         if (quantity == null) {
             _errorState.value = "The purchases quantity is required"
+            return true
+        }
+        if (quantity <= 0) {
+            _errorState.value = "Quantity must be major than zero"
             return true
         }
         if (date == null) {

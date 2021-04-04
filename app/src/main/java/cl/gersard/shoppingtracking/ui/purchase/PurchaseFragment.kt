@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import cl.gersard.shoppingtracking.R
@@ -94,7 +95,10 @@ class PurchaseFragment : Fragment(), View.OnTouchListener, SimpleItemAdapter.Sim
             when (purchaseState) {
                 is PurchaseSaveState.Error -> TODO()
                 is PurchaseSaveState.Loading -> manageProgress(purchaseState.isLoading)
-                PurchaseSaveState.Success -> TODO()
+                PurchaseSaveState.Success -> {
+                    Toast.makeText(requireActivity(), "Purchase saved successfully", Toast.LENGTH_SHORT).show()
+                    requireActivity().supportFragmentManager.popBackStack()
+                }
             }
         })
     }
