@@ -16,4 +16,6 @@ class ProductDataSourceImpl @Inject constructor(private val productDao: ProductD
         productDao.insertProductPurchase(productPurchaseCrossRef)
 
     override suspend fun getProduct(barcode: String): ProductWithBrand? = productDao.getProduct(barcode)
+
+    override suspend fun updateProduct(product: ProductEntity): Int = productDao.updateProduct(product)
 }

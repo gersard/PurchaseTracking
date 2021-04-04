@@ -188,7 +188,7 @@ class PurchaseFragment : Fragment(), View.OnTouchListener, SimpleItemAdapter.Sim
             etProductDescription.setText(product.description)
             atvProductBrand.setText(product.brand.name, false)
             etProductBarcode.setText(product.barcode)
-            etProductNote.setText(product.name)
+            etProductNote.setText(product.note)
         }
     }
 

@@ -3,7 +3,7 @@ package cl.gersard.shoppingtracking.data.product
 import cl.gersard.shoppingtracking.data.product.local.ProductDataSource
 import cl.gersard.shoppingtracking.data.product.local.model.ProductPurchaseCrossRef
 import cl.gersard.shoppingtracking.domain.product.Product
-import cl.gersard.shoppingtracking.domain.product.ProductInsert
+import cl.gersard.shoppingtracking.domain.product.ProductInsertUpdate
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -16,7 +16,7 @@ class ProductRepositoryImpl @Inject constructor(
         return productMapper.mapToProductDomain(dataSource.getAllProducts())
     }
 
-    override suspend fun insertProduct(product: ProductInsert): Long = try {
+    override suspend fun insertProduct(product: ProductInsertUpdate): Long = try {
         dataSource.insertProduct(productMapper.mapToProductEntity(product))
     } catch (e: Exception) {
         Timber.e(e)
@@ -38,5 +38,10 @@ class ProductRepositoryImpl @Inject constructor(
         } else {
             null
         }
+    }
+
+    override suspend fun updateProduct(product: ProductInsertUpdate): Int {
+        Timber.d("$product")
+        return dataSource.updateProduct(productMapper.mapToProductEntity(product))
     }
 }

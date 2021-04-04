@@ -1,9 +1,8 @@
 package cl.gersard.shoppingtracking.domain.product
 
-import cl.gersard.shoppingtracking.domain.brand.Brand
 
-// Exclusive to insert product
-data class ProductInsert(
+// Exclusive to insert or update product
+data class ProductInsertUpdate(
     val id: Long,
     val barcode: String,
     val name: String,

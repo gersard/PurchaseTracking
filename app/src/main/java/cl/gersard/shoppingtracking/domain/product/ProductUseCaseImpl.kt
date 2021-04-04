@@ -1,7 +1,6 @@
 package cl.gersard.shoppingtracking.domain.product
 
 import cl.gersard.shoppingtracking.data.product.ProductRepository
-import java.util.*
 import javax.inject.Inject
 
 class ProductUseCaseImpl @Inject constructor(private val repository: ProductRepository) : ProductUseCase {
@@ -11,7 +10,7 @@ class ProductUseCaseImpl @Inject constructor(private val repository: ProductRepo
     }
 
     override suspend fun insertProduct(id: Long, name: String, description: String, barcode: String, brandId: Long, note: String) : Long{
-        val product = ProductInsert(id, barcode, name, description, brandId, note)
+        val product = ProductInsertUpdate(id, barcode, name, description, brandId, note)
         return repository.insertProduct(product)
     }
 
@@ -30,5 +29,9 @@ class ProductUseCaseImpl @Inject constructor(private val repository: ProductRepo
         } catch (e: Exception) {
             ProductState.Error("An error has occurred while searching")
         }
+    }
+
+    override suspend fun updateProduct(product: ProductInsertUpdate): Int {
+        return repository.updateProduct(product)
     }
 }

@@ -15,4 +15,6 @@ interface ProductDataSource {
 
     suspend fun getProduct(barcode: String): ProductWithBrand?
 
+    suspend fun updateProduct(product: ProductEntity): Int
+
 }

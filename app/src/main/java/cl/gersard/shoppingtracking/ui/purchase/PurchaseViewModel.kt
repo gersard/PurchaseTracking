@@ -8,6 +8,7 @@ import cl.gersard.shoppingtracking.domain.brand.BrandUseCase
 import cl.gersard.shoppingtracking.domain.market.Market
 import cl.gersard.shoppingtracking.domain.market.MarketUseCase
 import cl.gersard.shoppingtracking.domain.product.Product
+import cl.gersard.shoppingtracking.domain.product.ProductInsertUpdate
 import cl.gersard.shoppingtracking.domain.product.ProductState
 import cl.gersard.shoppingtracking.domain.product.ProductUseCase
 import cl.gersard.shoppingtracking.domain.purchase.PurchaseSaveState
@@ -87,7 +88,9 @@ class PurchaseViewModel @Inject constructor(
             // Product
             val productId = if (productState.value != null && productState.value is ProductState.Success) {
                 val product = (productState.value as ProductState.Success).data
-                productUseCase.insertProduct(product.id, product.name, product.description, product.barcode, brandId, product.note)
+                Timber.d("Product note $prodNote")
+                productUseCase.updateProduct(ProductInsertUpdate(product.id, prodBarcode, prodName, prodDesc, brandId, prodNote))
+                product.id
             } else {
                 productUseCase.insertProduct(0, prodName, prodDesc, prodBarcode, brandId, prodNote)
             }

@@ -13,13 +13,17 @@ interface ProductDao {
     @Query("SELECT * FROM product")
     suspend fun getProductsWithPurchases(): List<ProductWithPurchases>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert()
     suspend fun insertProduct(product: ProductEntity): Long
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertProductPurchase(productPurchaseCrossRef: ProductPurchaseCrossRef): Long
 
+    @Transaction
     @Query("SELECT * FROM product WHERE barcode = :barcode")
     suspend fun getProduct(barcode: String): ProductWithBrand?
+
+    @Update
+    suspend fun updateProduct(product: ProductEntity): Int
 
 }

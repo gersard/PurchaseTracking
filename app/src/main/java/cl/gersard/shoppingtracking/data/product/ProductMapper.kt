@@ -6,7 +6,7 @@ import cl.gersard.shoppingtracking.data.product.local.model.ProductWithBrand
 import cl.gersard.shoppingtracking.data.product.local.model.ProductWithPurchases
 import cl.gersard.shoppingtracking.data.purchase.PurchaseMapper
 import cl.gersard.shoppingtracking.domain.product.Product
-import cl.gersard.shoppingtracking.domain.product.ProductInsert
+import cl.gersard.shoppingtracking.domain.product.ProductInsertUpdate
 import javax.inject.Inject
 
 class ProductMapper @Inject constructor
@@ -45,7 +45,7 @@ class ProductMapper @Inject constructor
         product.brand.id
     )
 
-    fun mapToProductEntity(product: ProductInsert) = ProductEntity(
+    fun mapToProductEntity(product: ProductInsertUpdate) = ProductEntity(
         product.id,
         product.barcode,
         product.name,
