@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-<!--    LISTA DE PRODUCTOS-->
+    <!--    LISTA DE PRODUCTOS-->
     <string name="content_description_fab_add_purchase">Añadir compra</string>
     <string name="content_description_search_button">Botón de buscar</string>
     <string name="empty_products_list">Nose encontraron productos. \nPresiona aquí para recargar</string>
@@ -31,7 +31,19 @@
     <string name="hint_purchase_date">Fecha de compra</string>
     <string name="hint_purchase_note">Nota</string>
 
-
-
     <string name="save_product_purchase">Guardar</string>
+
+    <!--    ERRORS FORM ADD PURCHASE-->
+    <string name="error_product_name_required">Debes ingresar el nombre del producto</string>
+    <string name="error_product_barcode_required">Debes ingresar el código del producto</string>
+    <string name="error_purchase_total_required">Debes ingresar el total de la compra</string>
+    <string name="error_purchase_total_negative">El total de la compra debe ser mayor a 0</string>
+    <string name="error_purchase_quantity_required">Debes ingresar la cantidad del producto comprado</string>
+    <string name="error_purchase_quantity_negative">La cantidad debe ser mayor a 0</string>
+    <string name="error_purchase_date_required">Debes ingresar la fecha de compra</string>
+    <string name="product_not_founded">Producto no encontrado, rellena sus datos para crearlo</string>
+
+
+    <string name="purchase_saved_successfully">Purchase saved successfully</string>
+
 </resources>

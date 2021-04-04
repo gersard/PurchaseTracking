@@ -85,8 +85,8 @@ class PurchaseFragment : Fragment(), View.OnTouchListener, SimpleItemAdapter.Sim
     }
 
     private fun observeErrors() {
-        viewModel.errorState.observe(viewLifecycleOwner, { message ->
-            Snackbar.make(viewBinding.root, message, Snackbar.LENGTH_LONG)
+        viewModel.errorState.observe(viewLifecycleOwner, { messageRes ->
+            Snackbar.make(viewBinding.root, messageRes, Snackbar.LENGTH_LONG)
                 .setTextColor(ContextCompat.getColor(requireContext(), R.color.text_color_error))
                 .show()
         })
@@ -98,7 +98,7 @@ class PurchaseFragment : Fragment(), View.OnTouchListener, SimpleItemAdapter.Sim
                 is PurchaseSaveState.Error -> TODO()
                 is PurchaseSaveState.Loading -> manageProgress(purchaseState.isLoading)
                 PurchaseSaveState.Success -> {
-                    Toast.makeText(requireActivity(), "Purchase saved successfully", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireActivity(), getString(R.string.purchase_saved_successfully), Toast.LENGTH_SHORT).show()
                     requireActivity().supportFragmentManager.popBackStack()
                 }
             }
@@ -170,7 +170,7 @@ class PurchaseFragment : Fragment(), View.OnTouchListener, SimpleItemAdapter.Sim
             when (productState) {
                 ProductState.Empty -> {
                     Timber.d("Product empty")
-                    Snackbar.make(viewBinding.root, "Producto no encontrado, rellena sus datos para crearlo", Snackbar.LENGTH_LONG)
+                    Snackbar.make(viewBinding.root, getString(R.string.product_not_founded), Snackbar.LENGTH_LONG)
                         .show()
                 }
                 is ProductState.Error -> TODO()

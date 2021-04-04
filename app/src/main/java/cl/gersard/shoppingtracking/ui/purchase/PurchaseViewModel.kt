@@ -3,6 +3,7 @@ package cl.gersard.shoppingtracking.ui.purchase
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import cl.gersard.shoppingtracking.R
 import cl.gersard.shoppingtracking.domain.brand.Brand
 import cl.gersard.shoppingtracking.domain.brand.BrandUseCase
 import cl.gersard.shoppingtracking.domain.market.Market
@@ -15,7 +16,6 @@ import cl.gersard.shoppingtracking.domain.purchase.PurchaseSaveState
 import cl.gersard.shoppingtracking.domain.purchase.PurchaseUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import java.time.LocalDate
 import javax.inject.Inject
 
@@ -48,7 +48,7 @@ class PurchaseViewModel @Inject constructor(
     val purchasesSaveState get() = _purchasesSaveState
 
     // STATE OF ERROR INSERTING PURCHASE
-    private var _errorState: MutableLiveData<String> = MutableLiveData()
+    private var _errorState: MutableLiveData<Int> = MutableLiveData()
     val errorState get() = _errorState
 
     fun searchProduct(barcodeProduct: String) {
@@ -88,7 +88,6 @@ class PurchaseViewModel @Inject constructor(
             // Product
             val productId = if (productState.value != null && productState.value is ProductState.Success) {
                 val product = (productState.value as ProductState.Success).data
-                Timber.d("Product note $prodNote")
                 productUseCase.updateProduct(ProductInsertUpdate(product.id, prodBarcode, prodName, prodDesc, brandId, prodNote))
                 product.id
             } else {
@@ -100,7 +99,7 @@ class PurchaseViewModel @Inject constructor(
 
             // Relation Product - Purchase
             productUseCase.insertProductPurchase(productId, purchaseId)
-            Timber.d("Product ID: $productId - Purchase ID: $purchaseId")
+
             _purchasesSaveState.value = PurchaseSaveState.Loading(false)
             _purchasesSaveState.value = PurchaseSaveState.Success
         }
@@ -108,31 +107,31 @@ class PurchaseViewModel @Inject constructor(
 
     private fun hasFormError(prodName: String, prodBarcode: String, total: Int?, quantity: Int?, date: LocalDate?): Boolean {
         if (prodName.isEmpty()) {
-            _errorState.value = "The products name is required"
+            _errorState.value = R.string.error_product_name_required
             return true
         }
         if (prodBarcode.isEmpty()) {
-            _errorState.value = "The products barcode is required"
+            _errorState.value = R.string.error_product_barcode_required
             return true
         }
         if (total == null) {
-            _errorState.value = "The purchases total is required"
+            _errorState.value = R.string.error_purchase_total_required
             return true
         }
         if (total <= 0) {
-            _errorState.value = "Total must be major than zero"
+            _errorState.value = R.string.error_purchase_total_negative
             return true
         }
         if (quantity == null) {
-            _errorState.value = "The purchases quantity is required"
+            _errorState.value = R.string.error_purchase_quantity_required
             return true
         }
         if (quantity <= 0) {
-            _errorState.value = "Quantity must be major than zero"
+            _errorState.value = R.string.error_purchase_quantity_negative
             return true
         }
         if (date == null) {
-            _errorState.value = "The purchases date is required"
+            _errorState.value = R.string.error_purchase_date_required
             return true
         }
 

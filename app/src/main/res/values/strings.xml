@@ -14,7 +14,7 @@
     <string name="button_positive_text_dialog_permission">Allow</string>
     <string name="button_negative_text_dialog_permission">Deny</string>
 
-<!--    PRODUCT INFO-->
+    <!--    PRODUCT INFO-->
     <string name="title_product">Product</string>
     <string name="hint_product_name">Name</string>
     <string name="hint_product_description">Description</string>
@@ -31,7 +31,20 @@
     <string name="hint_purchase_date">Date</string>
     <string name="hint_purchase_note">Note</string>
 
-
-
     <string name="save_product_purchase">Save</string>
+
+
+    <!--    ERRORS ADD PURCHASE-->
+    <string name="error_product_name_required">The products name is required</string>
+    <string name="error_product_barcode_required">The products barcode is required</string>
+    <string name="error_purchase_total_required">The purchases total is required</string>
+    <string name="error_purchase_total_negative">Total must be major than zero</string>
+    <string name="error_purchase_quantity_required">The purchases quantity is required</string>
+    <string name="error_purchase_quantity_negative">Quantity must be major than zero</string>
+    <string name="error_purchase_date_required">The purchases date is required</string>
+    <string name="product_not_founded">Product not found, complete the form to save it</string>
+
+    <string name="purchase_saved_successfully">Compra guardada exitosamente</string>
+
+
 </resources>
