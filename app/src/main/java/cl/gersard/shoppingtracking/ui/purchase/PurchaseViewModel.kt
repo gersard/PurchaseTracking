@@ -13,7 +13,6 @@ import cl.gersard.shoppingtracking.domain.product.ProductUseCase
 import cl.gersard.shoppingtracking.domain.purchase.PurchaseSaveState
 import cl.gersard.shoppingtracking.domain.purchase.PurchaseUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.time.LocalDate

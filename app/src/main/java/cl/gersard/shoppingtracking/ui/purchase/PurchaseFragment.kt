@@ -21,6 +21,7 @@ import cl.gersard.shoppingtracking.domain.purchase.PurchaseSaveState
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 import java.time.*
 
 @AndroidEntryPoint

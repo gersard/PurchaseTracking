@@ -42,7 +42,7 @@ class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() 
             with(viewBinding) {
                 tvBrandName.text = product.brand.name
                 tvProductName.text = product.name
-                tvLastPurchasePrice.text = product.purchases?.firstOrNull()?.let {
+                tvLastPurchasePrice.text = product.purchases?.lastOrNull()?.let {
                     "$${it.price}"
                 } ?: "---"
 
