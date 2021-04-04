@@ -2,9 +2,12 @@ package cl.gersard.shoppingtracking.ui.product.list.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import cl.gersard.shoppingtracking.databinding.RowProductBinding
 import cl.gersard.shoppingtracking.domain.product.Product
+import cl.gersard.shoppingtracking.ui.diffutil.CustomDiffCallback
+import cl.gersard.shoppingtracking.ui.diffutil.DiffUtilHelperModel
 
 class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
@@ -22,9 +25,14 @@ class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() 
 
     fun addProducts(products: List<Product>) {
         if (products.isNotEmpty()) {
-            val startIndex = this.products.size
+//            val startIndex = this.products.size
+//            this.products.addAll(products)
+//            notifyItemRangeInserted(startIndex, this.products.size)
+            val diffCalback = CustomDiffCallback<DiffUtilHelperModel>(this.products,products)
+            val diffResult = DiffUtil.calculateDiff(diffCalback)
+            this.products.clear()
             this.products.addAll(products)
-            notifyItemRangeInserted(startIndex, this.products.size)
+            diffResult.dispatchUpdatesTo(this)
         }
     }
 
