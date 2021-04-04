@@ -44,7 +44,6 @@
     <string name="error_purchase_date_required">The purchases date is required</string>
     <string name="product_not_founded">Product not found, complete the form to save it</string>
 
-    <string name="purchase_saved_successfully">Compra guardada exitosamente</string>
-
+    <string name="purchase_saved_successfully">Purchase saved successfully</string>
 
 </resources>

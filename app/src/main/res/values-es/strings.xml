@@ -43,7 +43,7 @@
     <string name="error_purchase_date_required">Debes ingresar la fecha de compra</string>
     <string name="product_not_founded">Producto no encontrado, rellena sus datos para crearlo</string>
 
+    <string name="purchase_saved_successfully">Compra guardada exitosamente</string>
 
-    <string name="purchase_saved_successfully">Purchase saved successfully</string>
 
 </resources>
