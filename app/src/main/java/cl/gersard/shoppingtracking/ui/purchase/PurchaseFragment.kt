@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import cl.gersard.shoppingtracking.R
 import cl.gersard.shoppingtracking.core.DateUtils
@@ -44,9 +45,11 @@ class PurchaseFragment : Fragment(), View.OnTouchListener, SimpleItemAdapter.Sim
         observeProductState()
         observePurchaseState()
         observeContainersCollapse()
+        observeErrors()
 
         viewModel.fetchBrands()
         viewModel.fetchMarkets()
+
         val barcodeProduct = arguments?.getString(BARCODE_PRODUCT, "")!!
         viewModel.searchProduct(barcodeProduct)
 
@@ -69,13 +72,21 @@ class PurchaseFragment : Fragment(), View.OnTouchListener, SimpleItemAdapter.Sim
                 etProductDescription.text(),
                 etProductBarcode.text(),
                 etProductNote.text(),
-                etPurchaseTotal.text().toInt(),
-                etPurchaseQuantity.text().toInt(),
+                etPurchaseTotal.text().toIntOrNull(),
+                etPurchaseQuantity.text().toIntOrNull(),
                 DateUtils.parseDate(etPurchaseDate.text(), DateUtils.FORMAT_PURCHASE_FORM),
                 cbPurchaseHadDiscount.isChecked,
                 etPurchaseNote.text()
             )
         }
+    }
+
+    private fun observeErrors() {
+        viewModel.errorState.observe(viewLifecycleOwner, { message ->
+            Snackbar.make(viewBinding.root, message, Snackbar.LENGTH_LONG)
+                .setTextColor(ContextCompat.getColor(requireContext(), R.color.text_color_error))
+                .show()
+        })
     }
 
     private fun observePurchaseState() {

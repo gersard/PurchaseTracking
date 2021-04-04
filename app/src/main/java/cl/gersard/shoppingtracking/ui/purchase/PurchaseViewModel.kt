@@ -46,6 +46,10 @@ class PurchaseViewModel @Inject constructor(
     private var _purchasesSaveState: MutableLiveData<PurchaseSaveState> = MutableLiveData()
     val purchasesSaveState get() = _purchasesSaveState
 
+    // STATE OF ERROR INSERTING PURCHASE
+    private var _errorState: MutableLiveData<String> = MutableLiveData()
+    val errorState get() = _errorState
+
     fun searchProduct(barcodeProduct: String) {
         viewModelScope.launch {
             productState.value = productUseCase.searchProduct(barcodeProduct)
@@ -66,9 +70,11 @@ class PurchaseViewModel @Inject constructor(
 
     fun savePurchaseProduct(
         brandName: String, marketName: String, prodName: String, prodDesc: String, prodBarcode: String, prodNote: String,
-        total: Int, quantity: Int, date: LocalDate, hasDiscount: Boolean, purchaseNote: String
+        total: Int?, quantity: Int?, date: LocalDate, hasDiscount: Boolean, purchaseNote: String
     ) {
         viewModelScope.launch {
+            if (hasFormError(prodName, prodBarcode, total, quantity, date)) return@launch
+
             _purchasesSaveState.value = PurchaseSaveState.Loading(true)
             // Brand
             val brand = brandUseCase.getBrand(brandName)
@@ -87,7 +93,7 @@ class PurchaseViewModel @Inject constructor(
             }
 
             // PURCHASE
-            val purchaseId = purchaseUseCase.insertPurchase(total / quantity, quantity, date, marketId, hasDiscount, purchaseNote)
+            val purchaseId = purchaseUseCase.insertPurchase(total!! / quantity!!, quantity, date, marketId, hasDiscount, purchaseNote)
 
             // Relation Product - Purchase
             productUseCase.insertProductPurchase(productId, purchaseId)
@@ -95,6 +101,31 @@ class PurchaseViewModel @Inject constructor(
             delay(1000)
             _purchasesSaveState.value = PurchaseSaveState.Loading(false)
         }
+    }
+
+    private fun hasFormError(prodName: String, prodBarcode: String, total: Int?, quantity: Int?, date: LocalDate?): Boolean {
+        if (prodName.isEmpty()) {
+            _errorState.value = "The products name is required"
+            return true
+        }
+        if (prodBarcode.isEmpty()) {
+            _errorState.value = "The products barcode is required"
+            return true
+        }
+        if (total == null) {
+            _errorState.value = "The purchases total is required"
+            return true
+        }
+        if (quantity == null) {
+            _errorState.value = "The purchases quantity is required"
+            return true
+        }
+        if (date == null) {
+            _errorState.value = "The purchases date is required"
+            return true
+        }
+
+        return false
     }
 
     fun collapseContainerProductInfo() {
