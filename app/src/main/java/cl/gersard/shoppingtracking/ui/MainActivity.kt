@@ -14,10 +14,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    fun changeFragment(fragment: Fragment, addToBackStack: Boolean) {
+    fun changeFragment(fragment: Fragment, popStack: Boolean) {
+        if (popStack) supportFragmentManager.popBackStack()
+
         val transaction = supportFragmentManager.beginTransaction()
-            .replace(R.id.host_fragment, fragment,fragment::class.java.simpleName)
-        if (addToBackStack) transaction.addToBackStack(null)
+            .addToBackStack(null)
+            .replace(R.id.host_fragment, fragment, fragment::class.java.simpleName)
+
         transaction.commit()
     }
 }

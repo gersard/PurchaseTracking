@@ -113,7 +113,7 @@ class ScanFragment : Fragment(), BarcodeListener {
 
     override fun barcodeDetected(barcode: String) {
         if (processingBarcode.compareAndSet(false, true)) {
-            (requireActivity() as MainActivity).changeFragment(PurchaseFragment.newInstance(barcode), false)
+            (requireActivity() as MainActivity).changeFragment(PurchaseFragment.newInstance(barcode), true)
         }
     }
 
