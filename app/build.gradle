@@ -112,7 +112,7 @@ dependencies {
     def extJunit = '1.1.2'
     def espresso = '3.3.0'
     def coroutinesTest = '1.4.3'
-    def robolectric = '4.4'
+    def robolectric = '4.5.1'
     testImplementation "junit:junit:$junit"
     androidTestImplementation "androidx.test.ext:junit:$extJunit"
     testImplementation 'androidx.test.ext:junit-ktx:1.1.2'
