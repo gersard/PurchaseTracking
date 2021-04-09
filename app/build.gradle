@@ -41,9 +41,6 @@ android {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-
-
     // LEGACY SUPPORT
     def legacySupport_version = '1.0.0'
     implementation "androidx.legacy:legacy-support-v4:$legacySupport_version"
@@ -57,7 +54,6 @@ dependencies {
 
     def constraintLayout_version = "2.0.4"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayout_version"
-
 
     // COROUTINES
     def coroutines_version = '1.4.2'
@@ -86,7 +82,7 @@ dependencies {
     def hiltLifecycle_version = "1.0.0-alpha03"
     def hiltCompiler_version = "1.0.0-beta01"
     implementation "com.google.dagger:hilt-android:$hilt_version"
-    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_version"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hiltLifecycle_version"
     androidTestImplementation 'com.google.dagger:hilt-android-testing:2.28-alpha'
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
     kapt "androidx.hilt:hilt-compiler:$hiltCompiler_version"
@@ -115,8 +111,13 @@ dependencies {
     def junit = '4.13.2'
     def extJunit = '1.1.2'
     def espresso = '3.3.0'
+    def coroutinesTest = '1.4.3'
+    def robolectric = '4.4'
     testImplementation "junit:junit:$junit"
     androidTestImplementation "androidx.test.ext:junit:$extJunit"
+    testImplementation 'androidx.test.ext:junit-ktx:1.1.2'
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso"
     debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesTest"
+    testImplementation "org.robolectric:robolectric:$robolectric"
 }
