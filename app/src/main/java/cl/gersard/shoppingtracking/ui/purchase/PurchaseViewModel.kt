@@ -95,10 +95,7 @@ class PurchaseViewModel @Inject constructor(
             }
 
             // PURCHASE
-            val purchaseId = purchaseUseCase.insertPurchase(total!! / quantity!!, quantity, date, marketId, hasDiscount, purchaseNote)
-
-            // Relation Product - Purchase
-            productUseCase.insertProductPurchase(productId, purchaseId)
+            val purchaseId = purchaseUseCase.insertPurchase(productId, total!! / quantity!!, quantity, date, marketId, hasDiscount, purchaseNote)
 
             _purchasesSaveState.value = PurchaseSaveState.Loading(false)
             _purchasesSaveState.value = PurchaseSaveState.Success

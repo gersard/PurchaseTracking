@@ -9,5 +9,6 @@ data class PurchaseInsert(
     val date: LocalDate,
     val marketId: Long,
     val discount: Boolean,
-    val note: String
+    val note: String,
+    val productOwnerId: Long
 )

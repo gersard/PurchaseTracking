@@ -17,7 +17,8 @@ class PurchaseMapper @Inject constructor(private val marketMapper: MarketMapper)
             it.purchase.date,
             marketMapper.mapToMarketDomain(it.market),
             it.purchase.discount,
-            it.purchase.note
+            it.purchase.note,
+            it.purchase.productOwnerId
         )
     }
 
@@ -28,7 +29,8 @@ class PurchaseMapper @Inject constructor(private val marketMapper: MarketMapper)
         purchase.date,
         purchase.discount,
         purchase.note,
-        purchase.market.id
+        purchase.market.id,
+        purchase.productId
     )
 
     fun mapToPurchaseEntity(purchase: PurchaseInsert) = PurchaseEntity(
@@ -38,6 +40,7 @@ class PurchaseMapper @Inject constructor(private val marketMapper: MarketMapper)
         purchase.date,
         purchase.discount,
         purchase.note,
-        purchase.marketId
+        purchase.marketId,
+        purchase.productOwnerId
     )
 }

@@ -6,8 +6,6 @@ interface ProductUseCase {
 
     suspend fun insertProduct(id: Long, name: String, description: String, barcode: String, brandId: Long, note: String): Long
 
-    suspend fun insertProductPurchase(idProduct: Long, idPurchase: Long)
-
     suspend fun searchProduct(barcode: String): ProductState<Product>
 
     suspend fun updateProduct(product: ProductInsertUpdate): Int

@@ -9,8 +9,6 @@ interface ProductRepository {
 
     suspend fun insertProduct(product: ProductInsertUpdate): Long
 
-    suspend fun insertProductPurchase(idProduct: Long, idPurchase: Long): Boolean
-
     suspend fun getProduct(barcode: String): Product?
 
     suspend fun updateProduct(product: ProductInsertUpdate): Int

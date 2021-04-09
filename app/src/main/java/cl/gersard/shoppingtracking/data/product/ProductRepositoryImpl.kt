@@ -1,7 +1,6 @@
 package cl.gersard.shoppingtracking.data.product
 
 import cl.gersard.shoppingtracking.data.product.local.ProductDataSource
-import cl.gersard.shoppingtracking.data.product.local.model.ProductPurchaseCrossRef
 import cl.gersard.shoppingtracking.domain.product.Product
 import cl.gersard.shoppingtracking.domain.product.ProductInsertUpdate
 import timber.log.Timber
@@ -21,14 +20,6 @@ class ProductRepositoryImpl @Inject constructor(
     } catch (e: Exception) {
         Timber.e(e)
         -1
-    }
-
-    override suspend fun insertProductPurchase(idProduct: Long, idPurchase: Long): Boolean = try {
-        dataSource.insertProductPurchase(ProductPurchaseCrossRef(idProduct, idPurchase))
-        true
-    } catch (e: Exception) {
-        Timber.e(e)
-        false
     }
 
     override suspend fun getProduct(barcode: String): Product? {

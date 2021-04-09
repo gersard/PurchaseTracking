@@ -2,7 +2,6 @@ package cl.gersard.shoppingtracking.data.product.local
 
 import androidx.room.*
 import cl.gersard.shoppingtracking.data.product.local.model.ProductEntity
-import cl.gersard.shoppingtracking.data.product.local.model.ProductPurchaseCrossRef
 import cl.gersard.shoppingtracking.data.product.local.model.ProductWithBrand
 import cl.gersard.shoppingtracking.data.product.local.model.ProductWithPurchases
 
@@ -15,9 +14,6 @@ interface ProductDao {
 
     @Insert()
     suspend fun insertProduct(product: ProductEntity): Long
-
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertProductPurchase(productPurchaseCrossRef: ProductPurchaseCrossRef): Long
 
     @Transaction
     @Query("SELECT * FROM product WHERE barcode = :barcode")

@@ -14,4 +14,5 @@ data class PurchaseEntity(
     @ColumnInfo(name = "discount") val discount: Boolean,
     @ColumnInfo(name = "note") val note: String,
     @ColumnInfo(name = "market_owner_id") val marketOwnerId: Long,
+    @ColumnInfo(name = "product_owner_id") val productOwnerId: Long,
 )

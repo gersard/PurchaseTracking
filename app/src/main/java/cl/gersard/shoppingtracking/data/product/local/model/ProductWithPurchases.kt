@@ -14,8 +14,7 @@ data class ProductWithPurchases(
     @Relation(
         entity = PurchaseEntity::class,
         parentColumn = "productId",
-        entityColumn = "purchaseId",
-        associateBy = Junction(ProductPurchaseCrossRef::class)
+        entityColumn = "product_owner_id"
     )
     val purchases: List<PurchaseDetailEntity>,
     @Relation(

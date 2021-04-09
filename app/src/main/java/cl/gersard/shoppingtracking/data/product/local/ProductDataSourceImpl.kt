@@ -1,7 +1,6 @@
 package cl.gersard.shoppingtracking.data.product.local
 
 import cl.gersard.shoppingtracking.data.product.local.model.ProductEntity
-import cl.gersard.shoppingtracking.data.product.local.model.ProductPurchaseCrossRef
 import cl.gersard.shoppingtracking.data.product.local.model.ProductWithBrand
 import cl.gersard.shoppingtracking.data.product.local.model.ProductWithPurchases
 import javax.inject.Inject
@@ -11,9 +10,6 @@ class ProductDataSourceImpl @Inject constructor(private val productDao: ProductD
     override suspend fun getAllProducts(): List<ProductWithPurchases> = productDao.getProductsWithPurchases()
 
     override suspend fun insertProduct(productEntity: ProductEntity): Long = productDao.insertProduct(productEntity)
-
-    override suspend fun insertProductPurchase(productPurchaseCrossRef: ProductPurchaseCrossRef): Long =
-        productDao.insertProductPurchase(productPurchaseCrossRef)
 
     override suspend fun getProduct(barcode: String): ProductWithBrand? = productDao.getProduct(barcode)
 
