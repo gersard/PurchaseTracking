@@ -30,6 +30,3 @@ Aplicación móvil desarrollada para trackear los precios de compra de diferente
 - Testing
   - [Espresso](https://developer.android.com/training/testing/espresso)
   - [Robolectric](http://robolectric.org/)
-
-## TODO
-- Improve design :disappointed:
