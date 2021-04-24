@@ -111,13 +111,29 @@ dependencies {
     def junit = '4.13.2'
     def extJunit = '1.1.2'
     def espresso = '3.3.0'
+    def espressoContrib = '3.3.0'
     def coroutinesTest = '1.4.3'
+    def truth = '1.0.1'
+    def mockito = '2.21.0'
+    def mockitoDexmaker = '2.12.1'
+    debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
+
+    // UNIT TESTING
     def robolectric = '4.5.1'
     testImplementation "junit:junit:$junit"
-    androidTestImplementation "androidx.test.ext:junit:$extJunit"
     testImplementation 'androidx.test.ext:junit-ktx:1.1.2'
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso"
-    debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesTest"
     testImplementation "org.robolectric:robolectric:$robolectric"
+    testImplementation "com.google.truth:truth:$truth"
+    testImplementation "org.mockito:mockito-core:$mockito"
+
+    // INSTRUMENTED TESTING
+    androidTestImplementation "junit:junit:$junit"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso"
+    androidTestImplementation "androidx.test.ext:junit:$extJunit"
+    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesTest"
+    androidTestImplementation "com.google.truth:truth:$truth"
+    androidTestImplementation "org.mockito:mockito-core:$mockito"
+    androidTestImplementation "com.linkedin.dexmaker:dexmaker-mockito:$mockitoDexmaker"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$espressoContrib"
 }
